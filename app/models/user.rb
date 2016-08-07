@@ -2,14 +2,14 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@mail4\.doshisha\.ac\.jp/
-  #/\A[a-z]{3}+[\d]{4}+@mail(|4)\.doshisha\.ac\.jp+\z/i
+  VALID_EMAIL_REGEX = /\A[a-z]{3}+[\d]{4}+@mail(|4)\.doshisha\.ac\.jp+\z/i
+  #/\A[\w+\-.]+@mail4\.doshisha\.ac\.jp/
   validates :email, presence: true, length: { maximum: 255 },
                                 format: { with: VALID_EMAIL_REGEX }, 
                                 uniqueness: { case_sensitive: false }
                                 #inclusion: {in: mail4.doshisha.ac.jp}
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # 与えられた文字列のハッシュ値を返す 
   def User.digest(string)
