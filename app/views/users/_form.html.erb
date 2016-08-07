@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages' %>
         
-  <%= f.label :name %>
+  <%= f.label :name ,"Name (誰かわからなくなるので本名で登録してください)"%>
   <%= f.text_field :name, class: 'form-control' %>
   
   <%= f.label :email ,"Mail (Activemailしか登録できません)"%>
