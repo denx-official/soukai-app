@@ -1,13 +1,21 @@
 class SessionsController < ApplicationController
-  def new
-  end
   
+  def new
+    num = 1
+    @domain = []
+    while num < 10 do
+      @domain << "@mail" + num.to_s + ".doshisha.ac.jp"
+      num += 1
+    end
+  end
+
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    email = params[:email] + params[:domain]
+    user = User.find_by(email: email)
+    if user && user.authenticate(params[:password])
       if user.activated?
         log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        params[:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user
       else
         message  = "アカウントが有効化されてません。"

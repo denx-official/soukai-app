@@ -2,22 +2,33 @@
 <h1>Log in</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
+  <div class="col-xs-9 col-xs-offset-2">
+    <%= form_tag(login_path, method: "post") do %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= link_to "(forgot password)", new_password_reset_path %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, nil, class: 'form-control' %>
+      <%= select_tag :domain , options_for_select(
+        ['@mail1.doshisha.ac.jp',
+         '@mail2.doshisha.ac.jp',
+         '@mail3.doshisha.ac.jp',
+         '@mail4.doshisha.ac.jp',
+         '@mail5.doshisha.ac.jp',
+         '@mail6.doshisha.ac.jp',
+         '@mail7.doshisha.ac.jp',
+         '@mail8.doshisha.ac.jp',
+         '@mail9.doshisha.ac.jp',]),
+          include_blank: '-- 未指定 --', class: 'form-control' %>
       
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>パスワードを保存</span>
+      <%= label_tag :password %>
+      <%= link_to "(forgot password)", new_password_reset_path %>
+      <%= password_field_tag :password, nil, class: 'form-control' %>
+      
+      <%= label_tag :remember_me, class: "checkbox inline" do %>
+        <%= check_box_tag :remember_me %>
+        <span>ログインを保持</span>
       <% end %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      
+      <%= submit_tag "Log in", class: "btn btn-primary" %>
     <% end %>
 
     <p>まだ登録していない人は登録してください <%= link_to "登録ページ", signup_path %></p>
