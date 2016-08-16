@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  month: 
-  year: 
+  month: 1
+  year: 1
   password_digest: MyString
 
 two:
-  month: 
-  year: 
+  month: 1
+  year: 1
   password_digest: MyString

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
-  has_one :attendance, dependent: :destroy, foreign_key: :id
+  belongs_to :attendance
   
   # 与えられた文字列のハッシュ値を返す 
   def User.digest(string)

@@ -1,3 +1,4 @@
 class Attendance < ActiveRecord::Base
-  belongs_to :user, foreign_key: :id
+  has_many :user
+  has_many :soukai
 end

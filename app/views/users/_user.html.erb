@@ -6,68 +6,69 @@
       | <%= link_to "delete", user, method: :delete,
                                     data: { confirm: "You sure?" } %>
         <% end %>
-        </th>
+      </th>
       <th style="width: 100px;">name</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th>
       <th>10月</th><th>11月</th><th>12月</th><th>1月</th><th>2月</th><th>3月</th></tr>
     <tr>
       <th><%= gravatar_for user%></th><th><%= link_to user.name, user %></th>
+      <% set_month user.id %>
       <th>
-        <% if user.attendance.apr then %>
+        <% if @apr then %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.may then %>
+        <% if @may then %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.jun then %>
+        <% if @jun then %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.jul then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @jul then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.aug then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @aug then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.sep then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @sep then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.oct then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @oct then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.nov then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @nov then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.dec then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @dec then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.jan then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @jan then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.feb then %>
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <% if @feb then %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
         <% end %>
       </th>
       <th>
-        <% if user.attendance.mar then %>
+        <% if @mar then %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
         <% end %>
       </th>
