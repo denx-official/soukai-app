@@ -5,19 +5,27 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
+    
+    if params[:name] && params[:name].present?
+      @users = @users.where(['name LIKE ?', "%#{params[:name]}%"])
+    end
   end
   
   def show
     @user = User.find(params[:id])
+    @att = Attendance.find(params[:id])
   end
   
   def new
     @user = User.new
+    @att = Attendance.new
   end
   
   def create
     @user = User.new(user_params)
+    @att = Attendance.new
     if @user.save
+      @att.save
       @user.send_activation_email
       flash[:info] = "確認メールを送信しました。"
       redirect_to root_url

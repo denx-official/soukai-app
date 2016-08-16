@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: 
+  year: 
+  password_digest: MyString
+
+two:
+  month: 
+  year: 
+  password_digest: MyString

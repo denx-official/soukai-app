@@ -1,16 +1,12 @@
 class SessionsController < ApplicationController
   
   def new
-    num = 1
-    @domain = []
-    while num < 10 do
-      @domain << "@mail" + num.to_s + ".doshisha.ac.jp"
-      num += 1
-    end
+    set_domain
   end
 
   def create
-    email = params[:email] + params[:domain]
+    set_domain
+    email = params[:email].to_s + params[:domain]
     user = User.find_by(email: email)
     if user && user.authenticate(params[:password])
       if user.activated?

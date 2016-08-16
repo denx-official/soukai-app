@@ -1,0 +1,19 @@
+<% provide(:title, "attend") %>
+<h1>出席</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag attend_path, method: "post" do %>
+
+      <%= label_tag :month %>
+      <%= select_tag :month , options_for_select(@month),
+          class: 'form-control' %>
+
+      <%= label_tag :password %>
+      <%= password_field_tag :password, nil, class: 'form-control' %>
+      
+      <%= submit_tag "出席", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

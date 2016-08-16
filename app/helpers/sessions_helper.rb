@@ -58,4 +58,13 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
+  
+  def set_domain
+    num = 1
+    @domain = []
+    while num < 10 do
+      @domain << "@mail" + num.to_s + ".doshisha.ac.jp"
+      num += 1
+    end
+  end
 end

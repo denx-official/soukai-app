@@ -2,21 +2,12 @@
 <h1>Log in</h1>
 
 <div class="row">
-  <div class="col-xs-9 col-xs-offset-2">
-    <%= form_tag(login_path, method: "post") do %>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag login_path, method: "post" do %>
 
       <%= label_tag :email %>
       <%= text_field_tag :email, nil, class: 'form-control' %>
-      <%= select_tag :domain , options_for_select(
-        ['@mail1.doshisha.ac.jp',
-         '@mail2.doshisha.ac.jp',
-         '@mail3.doshisha.ac.jp',
-         '@mail4.doshisha.ac.jp',
-         '@mail5.doshisha.ac.jp',
-         '@mail6.doshisha.ac.jp',
-         '@mail7.doshisha.ac.jp',
-         '@mail8.doshisha.ac.jp',
-         '@mail9.doshisha.ac.jp',]),
+      <%= select_tag :domain , options_for_select(@domain),
           include_blank: '-- 未指定 --', class: 'form-control' %>
       
       <%= label_tag :password %>
