@@ -24,8 +24,8 @@ module Common
            .where("cast(strftime('%m', date) as int) = ?", month)
            .first.date.month
     else
-      Soukai.where("extract(year  from date_column) = ?", year)
-            .where("extract(month from date_column) = ?", month)
+      Soukai.where("extract(year  from date) = ?", year)
+            .where("extract(month from date) = ?", month)
             .first.date.month
     end
   end
