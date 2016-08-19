@@ -12,6 +12,14 @@
     </tr>
     <tr>
       <th><%= gravatar_for user%></th><th><%= link_to user.name, user %></th>
+      <% atted_month = set_atttend_month_as_hash(user, 2016).to_a %>
+        <% atted_month.each do |m| %>
+      	   <th>
+            <% if m.last then %>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            <% end %>
+          </th>
+      	<% end %>
     </tr>
   </table>
 </li>
