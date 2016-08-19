@@ -14,102 +14,17 @@
       		</tr>
       	</thead>
       	<tbody>
-      		<tr>
-      			<th>&nbsp;&nbsp;4月</th>
-      			<td>
-      			  <% if @apr then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;5月</th>
-      			<td>
-      			  <% if @may then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;6月</th>
-      			<td>
-      			  <% if @jun then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;7月</th>
-      			<td>
-      			  <% if @jul then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;8月</th>
-      			<td>
-      			  <% if @aug then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;9月</th>
-      			<td>
-      			  <% if @sep then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>10月</th>
-      			<td>
-      			  <% if @oct then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>11月</th>
-      			<td>
-      			  <% if @nov then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>12月</th>
-      			<td>
-      			  <% if @dec then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;1月</th>
-      			<td>
-      			  <% if @jan then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;2月</th>
-      			<td>
-      			  <% if @feb then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<th>&nbsp;&nbsp;3月</th>
-      			<td>
-      			  <% if @mar then %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-              <% end %>
-      			</td>
-      		</tr>
+      	  <% @atted_month.each do |m| %>
+      	    <tr>
+        			<th>&nbsp;&nbsp; <%= m.first %></th>
+        			<td>
+        			  <% if m.last then %>
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
+                <% end %>
+        			</td>
+        		</tr>
+        		<tr>
+      		<% end %>
       	</tbody>
       </table>
     </section>

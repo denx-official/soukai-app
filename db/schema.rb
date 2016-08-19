@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20160816141248) do
   end
 
   create_table "soukais", force: :cascade do |t|
-    t.integer  "month"
-    t.integer  "year"
+    t.string   "name"
+    t.date     "date"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

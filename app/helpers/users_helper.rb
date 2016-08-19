@@ -1,4 +1,5 @@
 module UsersHelper
+  include Common
 
   # 引数で与えられたユーザーのGravatar画像を返す
   def gravatar_for(user, options = { size: 80 })

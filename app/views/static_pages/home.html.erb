@@ -4,9 +4,10 @@
   <h2>
     総会の出席をとるWebアプリです
   </h2>
-
-  <%= link_to "Sign in", login_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
-  <br><br>
-  <%= link_to "出席", attend_path, class: "btn btn-lg btn-primary" %>
+  <% if current_user.present? %>
+    <%= link_to "出席", 'attendances/new', class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "Sign in", login_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>

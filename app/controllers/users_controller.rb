@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    set_month(params[:id])
+    @atted_month = set_atttend_month_as_hash(@user, 2016).to_a
   end
   
   def new

@@ -19,9 +19,10 @@ User.create!(name:  "odk",
 end
 
 12.times do |m|
-  Soukai.create!(month: m+1,
-                 year:  2016,
-                 password:  "soukaiyazo")
+  Soukai.create!(name: (m+1).to_s+"月総会",
+                 date:  Date.new(2016, m+1, 10),
+                 password:  "soukaiyazo",
+                 password_confirmation: "soukaiyazo",)
   att_user = (1..51).to_a.sort_by{rand}[0..15]
   att_user.size.times do |n|
     Attendance.create!(soukai_id: m+1,
