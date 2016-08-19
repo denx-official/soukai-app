@@ -19,9 +19,15 @@ module Common
   end
   
   def soukai_narrow_month(month, year)
-    Soukai.where("cast(strftime('%Y', date) as int) = ?", year)
-          .where("cast(strftime('%m', date) as int) = ?", month)
-          .first.date.month
+    if Rails.env.development?
+      Soukai.where("cast(strftime('%Y', date) as int) = ?", year)
+           .where("cast(strftime('%m', date) as int) = ?", month)
+           .first.date.month
+    else
+      Soukai.where("extract(year  from date) = ?", year)
+            .where("extract(month from date) = ?", month)
+            .first.date.month
+    end
   end
   
 end
