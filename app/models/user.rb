@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   before_save   :downcase_email
   before_create :create_activation_digest
   validates :name,  presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[a-z]{3}+[\d]{4}+@mail(|4)\.doshisha\.ac\.jp+\z/i
+  VALID_EMAIL_REGEX = /\A[a-z]{3}+[\d]{4}+@mail(|\d)\.doshisha\.ac\.jp+\z/i
   #/\A[\w+\-.]+@mail4\.doshisha\.ac\.jp/
   validates :email, presence: true, length: { maximum: 255 },
                                 format: { with: VALID_EMAIL_REGEX }, 
