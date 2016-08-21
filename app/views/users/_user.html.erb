@@ -7,11 +7,11 @@
                                     data: { confirm: "You sure?" } %>
         <% end %>
       </th>
-      <th style="width: 100px;">name</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th>
+      <th style="width: 150px;">name</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th>
       <th>10月</th><th>11月</th><th>12月</th><th>1月</th><th>2月</th><th>3月</th>
     </tr>
     <tr>
-      <th><%= gravatar_for user%></th><th><%= link_to user.name, user %></th>
+      <th></th><th><%= link_to user.name, user %></th>
       <% atted_month = set_atttend_month_as_hash(user, 2016).to_a %>
         <% atted_month.each do |m| %>
       	   <th>

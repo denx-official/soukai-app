@@ -7,7 +7,7 @@
 
       <%= f.label :soukai_id %>
       <%= f.collection_select :soukai_id, @month, :id, :name,
-                {prompt: true}, {class: "form-control input-sm"}%>
+                {prompt: false}, {class: "form-control input-sm"}%>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>

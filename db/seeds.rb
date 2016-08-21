@@ -5,17 +5,19 @@ User.create!(name:  "odk",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
-             
-49.times do |n|
-  name  = Faker::Name.name
-  email = "exm#{n+1000}@mail4.doshisha.ac.jp"
-  password = "password"
-  User.create!(name:  name,
-               email: email,
-               password:              "password",
-               password_confirmation: "password",
-               activated: true,
-               activated_at: Time.zone.now)
+
+if Rails.env.development?
+  49.times do |n|
+    name  = Faker::Name.name
+    email = "exm#{n+1000}@mail4.doshisha.ac.jp"
+    password = "password"
+    User.create!(name:  name,
+                 email: email,
+                 password:              "password",
+                 password_confirmation: "password",
+                 activated: true,
+                 activated_at: Time.zone.now)
+  end
 end
 
 12.times do |m|

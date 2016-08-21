@@ -19,15 +19,10 @@ module Common
   end
   
   def soukai_narrow_month(month, year)
-    if Rails.env.development?
-      Soukai.where("cast(strftime('%Y', date) as int) = ?", year)
-           .where("cast(strftime('%m', date) as int) = ?", month)
-           .first.date.month
-    else
-      Soukai.where("extract(year  from date) = ?", year)
-            .where("extract(month from date) = ?", month)
-            .first.date.month
-    end
+      Soukai.narrow_year(year).narrow_month(month).first.date.month
   end
   
+  def select_layout
+    "application_mobile" if request.from_smartphone?
+  end
 end

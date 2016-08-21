@@ -144,6 +144,9 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-user_agent (0.5.2)
+      rack (>= 1.5)
+      woothee (>= 1.0.0)
     rails (4.2.2)
       actionmailer (= 4.2.2)
       actionpack (= 4.2.2)
@@ -218,6 +221,7 @@ GEM
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     will_paginate (3.0.7)
+    woothee (1.5.0)
     yard (0.9.5)
 
 PLATFORMS
@@ -241,6 +245,7 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   puma (= 2.11.1)
+  rack-user_agent
   rails (= 4.2.2)
   rails_12factor (= 0.0.2)
   sass-rails (= 5.0.2)

@@ -1,0 +1,29 @@
+<%= form_for @soukai, :url => {:action => 'create'} do |f| %>
+  <% if @soukai.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@soukai.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% @soukai.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+            
+  <%= f.label :name ,"総会名"%>
+  <%= f.text_field :name, class: 'form-control' %>
+      
+  <%= f.label :date ,"日時"%>
+  <%= f.date_select :date, {}, use_month_numbers: true, class: 'form-control' %>
+      
+  <%= f.label :password ,"Password (6文字以上)"%>
+  <%= f.password_field :password, class: 'form-control' %>
+      
+  <%= f.label :password_confirmation, "Passwordの確認" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+      
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      
+<% end %>

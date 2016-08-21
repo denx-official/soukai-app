@@ -1,0 +1,15 @@
+<% provide(:title, 'All soukais') %>
+<h1>All SOUKAI</h1>
+
+<table class="table">
+  <tr>
+    <th>名前</th><th>日付</th>
+  </tr>
+    <%= will_paginate %>
+      <%= render @soukais %>
+    <%= will_paginate %>
+</table>
+
+<div class="center"><%= link_to "総会を追加", 'soukais/new', class: "btn btn-lg btn-primary" %></div>
+
+
