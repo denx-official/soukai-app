@@ -18,5 +18,5 @@ class Soukai < ActiveRecord::Base
       Soukai.where("extract(year  from date) = ?", year)
     end
   end
-  
+    
 end

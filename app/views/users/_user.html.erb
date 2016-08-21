@@ -15,7 +15,7 @@
       <th><%= link_to user.name, user %></th>
       <% @soukai.each do |n| %>
         <th>
-            <% if return_attend(user, n.date.month, Date.today.year) then %>
+            <% if return_attend(user, n.date.month) then %>
               <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             <% end %>
           </th>

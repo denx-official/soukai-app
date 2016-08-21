@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
   
   def new
-    @month = Soukai.narrow_year(2016).order("date")
+    @month = Soukai.narrow_year(Date.today.year).order("date").reverse_order
     @attendance = Attendance.new
   end
   

@@ -5,14 +5,16 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "ホーム",    root_path %></li>
         <li><%= link_to "ヘルプ",    help_path %></li>
+        <li><%= link_to "出席",      attend_path %></li>
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
-            <li><%= link_to "総会", soukais_path %></li>
+            <li><%= link_to "総会一覧", soukais_path %></li>
           <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+              <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size: 20px;"></span>
+              <b class="caret" style="height: 10px;"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "プロフィール", current_user %></li>

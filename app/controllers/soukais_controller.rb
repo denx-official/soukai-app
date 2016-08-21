@@ -4,11 +4,15 @@ class SoukaisController < ApplicationController
   before_action :admin_user
   
   def index
-    @soukais = Soukai.paginate(page: params[:page]).order("date")
+    @soukais = Soukai.paginate(page: params[:page]).order("date").reverse_order
   end
   
   def show
     @soukai = Soukai.find(params[:id])
+    @user = []
+    Attendance.where("soukai_id = #{params[:id]}").order("user_id").each do |n|
+      @user << User.find(n.user_id)
+    end
   end
   
   def new
@@ -33,7 +37,7 @@ class SoukaisController < ApplicationController
     @soukai = Soukai.find(params[:id])
     if @soukai.update_attributes(soukai_params)
       flash[:success] = "変更されました"
-      redirect_to @soukai
+      redirect_to @souka
     else
       render 'edit'
     end
