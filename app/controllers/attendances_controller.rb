@@ -1,6 +1,5 @@
 class AttendancesController < ApplicationController
   include Common
-  before_action :detect_devise_variant
   layout        :select_layout
   before_action :logged_in_user, only: [:new, :create]
   
