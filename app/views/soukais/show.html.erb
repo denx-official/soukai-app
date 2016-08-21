@@ -6,11 +6,12 @@
       <table class="table">
         <thead>
       			<th style="font-size: 20px; font-weight: bold;">出席会員一覧</th>
+      			<th>/ 出席数 <%= @user.size %></th>
       	</thead>
       	<tbody>
       	  <% @user.each do |n| %>
       	  <tr>
-      	    <th><%= n.name %></th>
+      	    <th><%= link_to n.name, n %></th>
       	  </tr>
         	<% end %>
       	</tbody>

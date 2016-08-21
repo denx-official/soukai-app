@@ -37,7 +37,7 @@ class SoukaisController < ApplicationController
     @soukai = Soukai.find(params[:id])
     if @soukai.update_attributes(soukai_params)
       flash[:success] = "変更されました"
-      redirect_to @souka
+      redirect_to @soukai
     else
       render 'edit'
     end
