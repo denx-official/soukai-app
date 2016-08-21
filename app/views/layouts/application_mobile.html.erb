@@ -7,8 +7,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
+    <meta name="viewport" content="width=device-width">
   </head>
-  <body style="width: 320px;">
+  <body>
     <%= render 'layouts/header_mobile' %>
     <div>
       <% flash.each do |message_type, message| %>
