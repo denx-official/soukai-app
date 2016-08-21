@@ -16,7 +16,7 @@
   <%= f.text_field :name, class: 'form-control' %>
       
   <%= f.label :date ,"日時"%>
-  <%= f.date_select :date, {}, use_month_numbers: true, class: 'form-control' %>
+  <%= f.date_select :date, {use_month_numbers: true}, class: 'form-control' %>
       
   <%= f.label :password ,"Password (6文字以上)"%>
   <%= f.password_field :password, class: 'form-control' %>
