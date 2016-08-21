@@ -1,4 +1,7 @@
 class SoukaisController < ApplicationController
+  include Common
+  before_action :detect_devise_variant
+  layout        :select_layout
   before_action :admin_user
   
   def index

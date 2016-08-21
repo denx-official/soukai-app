@@ -4,16 +4,9 @@ class StaticPagesController < ApplicationController
   layout :select_layout
   
   def home
-    @a=request.from_smartphone?
   end
 
   def help
   end
-  
-  private
-    def detect_devise_variant
-      if request.from_smartphone?
-        request.variant = :mobile
-      end
-    end
+
 end

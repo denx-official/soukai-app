@@ -1,4 +1,7 @@
 class PasswordResetsController < ApplicationController
+  include Common
+  before_action :detect_devise_variant
+  layout        :select_layout
   before_action :get_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]

@@ -25,4 +25,10 @@ module Common
   def select_layout
     "application_mobile" if request.from_smartphone?
   end
+  
+  def detect_devise_variant
+    if request.from_smartphone?
+      request.variant = :mobile
+    end
+  end
 end
