@@ -2,4 +2,6 @@
   <th><%= soukai.name %></th>
   <th><%= soukai.date %></th>
   <th><%= link_to "編集", edit_soukai_path(soukai.id) %></th>
+  <th><%= link_to "削除", soukai, method: :delete,
+                        data: { confirm: "You sure?" }%></th>
 </tr>

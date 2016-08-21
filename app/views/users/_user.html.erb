@@ -1,25 +1,25 @@
 <li>
   <table class="table">
     <tr>
-      <th style="width: 100px;">
-        <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "delete", user, method: :delete,
+      <th style="width: 150px;">name | 
+      <% if current_user.admin? && !current_user?(user) %>
+        <%= link_to "delete", user, method: :delete,
                                     data: { confirm: "You sure?" } %>
         <% end %>
       </th>
-      <th style="width: 150px;">name</th><th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th><th>9月</th>
-      <th>10月</th><th>11月</th><th>12月</th><th>1月</th><th>2月</th><th>3月</th>
+      <% @soukai.each do |n| %>
+        <th><%= n.name.delete("総会") %></th>
+      <% end %>
     </tr>
     <tr>
-      <th></th><th><%= link_to user.name, user %></th>
-      <% atted_month = set_atttend_month_as_hash(user, 2016).to_a %>
-        <% atted_month.each do |m| %>
-      	   <th>
-            <% if m.last then %>
+      <th><%= link_to user.name, user %></th>
+      <% @soukai.each do |n| %>
+        <th>
+            <% if return_attend(user, n.date.month, Date.today.year) then %>
               <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             <% end %>
           </th>
-      	<% end %>
+      <% end %>
     </tr>
   </table>
 </li>
