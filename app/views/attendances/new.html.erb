@@ -6,7 +6,7 @@
     <%= form_for @attendance, :url => {:action => :create} do |f| %>
 
       <%= f.label :soukai_id %>
-      <%= f.collection_select :soukai_id, @month, :id, :name,
+      <%= f.collection_select :soukai_id, @soukai, :id, :name,
                 {prompt: false}, {class: "form-control input-sm"}%>
 
       <%= f.label :password %>

@@ -4,16 +4,16 @@ class AttendancesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
   
   def new
-    @month = Soukai.narrow_year(Date.today.year).order("date").reverse_order
+    @soukai = Soukai.narrow_year(Date.today.year).order("date").reverse_order
     @attendance = Attendance.new
   end
   
   def create
-    @month = Soukai.all
-    @soukai = Soukai.find(params[:attendance][:soukai_id])
+    @soukai = Soukai.all
+    soukai = Soukai.find(params[:attendance][:soukai_id])
     @attendance = Attendance.new(soukai_id: params[:attendance][:soukai_id], user_id: current_user.id)
-    if @attendance && @soukai.authenticate(params[:attendance][:password])
-      if Attendance.where("user_id = #{current_user.id}").where("soukai_id = #{params[:attendance][:soukai_id]}").blank?
+    if @attendance && soukai.authenticate(params[:attendance][:password])
+      if Attendance.where(user_id: current_user.id).where(soukai_id: params[:attendance][:soukai_id]).blank?
         if @attendance.save
           flash[:info] = "出席しました"
           redirect_to root_url
