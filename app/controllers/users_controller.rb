@@ -10,12 +10,12 @@ class UsersController < ApplicationController
     if params[:name] && params[:name].present?
       @users = @users.where(['name LIKE ?', "%#{params[:name]}%"])
     end
-    @soukai = Soukai.narrow_year(Date.today.year).order("date")
+    @soukais = Soukai.narrow_year(Date.today.year).order("date")
   end
   
   def show
     @user = User.find(params[:id])
-    @soukai = Soukai.narrow_year(Date.today.year).order("date")
+    @soukais = Soukai.narrow_year(Date.today.year).order("date")
   end
   
   def new

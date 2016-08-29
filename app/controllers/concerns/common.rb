@@ -1,12 +1,8 @@
 module Common
   extend ActiveSupport::Concern
   
-  def return_attend(user, month)
-    Attendance.where(user_id: user, soukai_id: narrow_soukai_and_return_month(month)).present?
-  end
-  
-  def narrow_soukai_and_return_month(month)
-    Soukai.narrow_month(month).first.date.month
+  def attend?(user, soukai)
+    Attendance.where(user_id: user, soukai_id: soukai).present?
   end
   
   def select_layout

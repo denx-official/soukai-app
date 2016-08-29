@@ -7,15 +7,15 @@
                                     data: { confirm: "You sure?" } %>
         <% end %>
       </th>
-      <% @soukai.each do |n| %>
-        <th><%= n.name.delete("総会") %></th>
+      <% @soukais.each do |soukai| %>
+        <th><%= soukai.name.delete("総会") %></th>
       <% end %>
     </tr>
     <tr>
       <th><%= link_to user.name, user %></th>
-      <% @soukai.each do |n| %>
+      <% @soukais.each do |soukai| %>
         <th>
-            <% if return_attend(user, n.date.month) then %>
+            <% if attend?(user, soukai.id) then %>
               <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             <% end %>
           </th>

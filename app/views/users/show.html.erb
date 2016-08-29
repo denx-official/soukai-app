@@ -11,11 +11,11 @@
       		</tr>
       	</thead>
       	<tbody>
-      	  <% @soukai.each do |m| %>
+      	  <% @soukais.each do |soukai| %>
       	    <tr>
-        			<th>&nbsp;&nbsp;<%= m.name %></th>
+        			<th>&nbsp;&nbsp;<%= soukai.name %></th>
         			<td>
-        			  <% if return_attend(@user, m.date.month) then %>
+        			  <% if attend?(@user, soukai.id) then %>
                   <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
                 <% end %>
         			</td>
