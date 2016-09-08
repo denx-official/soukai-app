@@ -5,8 +5,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "ホーム",    root_path %></li>
         <li><%= link_to "ヘルプ",    help_path %></li>
-        <li><%= link_to "出席",      attend_path %></li>
         <% if logged_in? %>
+          <li><%= link_to "出席",      attend_path %></li>
           <% if current_user.admin? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
             <li><%= link_to "総会一覧", soukais_path %></li>
