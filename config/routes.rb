@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   #get   'static_pages/help'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
+  get    'login_select_box'   => 'sessions#new2'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get    'attend'  => 'attendances#new'
+  get    'vote'    => 'project_vote#new'
 
   
   resources :users
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :attendances,         only: [:new, :create]
   resources :soukais
+  resources :project_vote,        only: [:new, :create]
 end

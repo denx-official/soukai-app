@@ -1,9 +1,9 @@
 <li>
   <table class="table">
     <tr>
-      <th style="width: 150px;">name | 
+      <th style="width: 150px;">name
       <% if current_user.admin? && !current_user?(user) %>
-        <%= link_to "delete", user, method: :delete,
+        | <%= link_to "delete", user, method: :delete,
                                     data: { confirm: "You sure?" } %>
         <% end %>
       </th>

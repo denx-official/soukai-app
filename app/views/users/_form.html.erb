@@ -7,6 +7,9 @@
   <%= f.label :email ,"Mail (Activemailしか登録できません)"%>
   <%= f.email_field :email, class: 'form-control' %>
   
+  <%= f.label :entrance_year　,"入学年度" %>
+  <%= f.select :entrance_year, @entrance_years, {}, class: 'form-control' %>
+  
   <%= f.label :password ,"Password (6文字以上)"%>
   <%= f.password_field :password, class: 'form-control' %>
   

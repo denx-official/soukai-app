@@ -3,17 +3,29 @@ class SessionsController < ApplicationController
   layout :select_layout
   
   def new
+  end
+  
+  def new2
     set_domain
   end
 
   def create
     set_domain
-    email = params[:email].to_s + params[:domain]
+    if params[:session].present?
+      email = params[:session][:email]
+      password = params[:session][:password]
+      remember_me = params[:session][:remember_me]
+    else
+      email = params[:email].to_s + params[:domain].to_s
+      password = params[:password]
+      remember_me = params[:remember_me]
+    end
+    
     user = User.find_by(email: email)
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(password)
       if user.activated?
         log_in user
-        params[:remember_me] == '1' ? remember(user) : forget(user)
+        remember_me == '1' ? remember(user) : forget(user)
         redirect_back_or user
       else
         message  = "アカウントが有効化されてません。"

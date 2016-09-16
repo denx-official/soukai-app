@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:index, :destroy]
+  before_action :set_entrance_year, only: [:new, :edit]
   
   def index
     @users = User.paginate(page: params[:page])
@@ -80,5 +81,9 @@ class UsersController < ApplicationController
       # 管理者かどうか確認
       def admin_user
         redirect_to(root_url) unless current_user.admin?
+      end
+      
+      def set_entrance_year
+        @entrance_years = (Date.today.year-10..Date.today.year).to_a
       end
 end
