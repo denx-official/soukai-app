@@ -10,9 +10,9 @@ class ProjectVoteController < ApplicationController
   
   def create
     @projects = Project.all
-    @project_vote = ProjectVote.new(project_id: params[:project_vote][:project_id], user_id: current_user.id)
+    @project_vote = ProjectVote.new(project_id: params[:project_id], user_id: current_user.id, vote: params[:vote])
     
-    if ProjectVote.where(user_id: current_user.id, project_id: params[:project_vote][:project_id]).blank?
+    if ProjectVote.where(project_id: params[:project_id], user_id: current_user.id).blank?
       if @project_vote.save
         flash[:info] = "投票しました"
         redirect_to root_url

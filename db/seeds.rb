@@ -8,15 +8,14 @@ User.create!(name:  "odk",
              entrance_year: 2016)
 
 if Rails.env.development?
-  49.times do |n|
+  18.times do |n|
     name  = Faker::Name.name
     mail = "exm#{n+1000}@mail4.doshisha.ac.jp"
-    password = "password"
     entrance_year = 2016
     User.create!(name:  name,
                  email: mail,
-                 password:              password,
-                 password_confirmation: password,
+                 password:              "password",
+                 password_confirmation: "password",
                  activated: true,
                  activated_at: Time.zone.now,
                  entrance_year: entrance_year)
@@ -28,19 +27,29 @@ end
                  date:  Date.new(2016, m+1, 10),
                  password:  "soukaiyazo",
                  password_confirmation: "soukaiyazo",)
-  att_user = (1..51).to_a.sort_by{rand}[0..15]
+  att_user = (1..19).to_a.sort_by{rand}[0..15]
   att_user.size.times do |n|
     Attendance.create!(soukai_id: m+1,
                        user_id: att_user[n])
   end
 end
 
-(1..5).each do |n|
-  Project.create!(name: (n).to_s+"月プロジェクト",
-                  soukai_id: n)
-  agree_user = (1..10).to_a.sort_by{rand}[0..15]
-  agree_user.size.times do |m|
-    ProjectVote.create!(project_id: n,
-                       user_id: m)
+(1..3).each do |project_id|
+  Project.create!(name: (project_id).to_s+"月プロジェクト",
+                  soukai_id: project_id,
+                  password: "password")
+  
+  (1..3).each do |option_index|
+    ProjectOption.create!(name: "オプション" + option_index.to_s,
+                          index: option_index,
+                          price: 20000,
+                          project_id: project_id,
+                          remarks: "そり")
   end
+end
+
+20.times do |user_id|
+  ProjectVote.create!(project_id: (1..3).to_a.sample,
+                      user_id: (1..19).to_a.sample,
+                      project_option_id: (1..3).to_a.sample)
 end

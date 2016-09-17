@@ -3,14 +3,13 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag vote_path, method: "post" do %>
+    <%= form_tag project_vote_index_path, :method => :post do %>
 
       <%= label_tag :project_id %>
       <%= select_tag :project_id, options_from_collection_for_select(@projects, "id", "name"), class: "form-control input-sm" %>
                 
       <%= label_tag :vote %>
-      <div name="vote" id="vote">
-        <div class="btn-group col-sm-4" data-toggle="buttons">
+        <div data-toggle="buttons">
           <label class="btn btn-primary">
             <%= radio_button_tag :vote, true %>賛成
           </label>
@@ -18,8 +17,7 @@
             <%= radio_button_tag :vote, false %>反対
           </label>
         </div>
-      </div>
-      
+      <div style="padding-top:10px"> </div>
       <%= submit_tag "投票", class: "btn btn-primary" %>
     <% end %>
   </div>

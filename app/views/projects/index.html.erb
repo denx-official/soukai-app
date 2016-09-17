@@ -1,0 +1,13 @@
+<% provide(:title, 'All Projects') %>
+<h1>All PROJECTS</h1>
+
+<table class="table">
+  <tr>
+    <th>名前</th>
+  </tr>
+    <%= will_paginate %>
+      <%= render @projects %>
+    <%= will_paginate %>
+</table>
+
+<div class="center"><%= link_to "プロジェクトを作成", 'projects/new', class: "btn btn-lg btn-primary" %></div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915183717) do
+ActiveRecord::Schema.define(version: 20160917120652) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "soukai_id"
@@ -20,19 +20,31 @@ ActiveRecord::Schema.define(version: 20160915183717) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_options", force: :cascade do |t|
+    t.integer  "index"
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "project_id"
+    t.text     "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "project_votes", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "vote"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "project_option_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.integer  "soukai_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.string   "password_digest"
   end
 
   create_table "soukais", force: :cascade do |t|

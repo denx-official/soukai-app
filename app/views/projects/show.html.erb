@@ -1,0 +1,29 @@
+<% provide(:title, @project.name) %>
+<div class="row">
+  <aside class="col-md-8 col-md-offset-2">
+    <section>
+      <h1 class="center" style="font-size: 40px;"><%= @project.name %></h1>
+      <table class="table">
+        <thead>
+            <th>No</th>
+      			<th>オプション</th>
+      			<th>値段</th>
+      			<th>投票数</th>
+      	</thead>
+      	<tbody>
+      	  <% @project_options.each_with_index do |project_option, i| %>
+      	  <tr>
+      	    <td><%= project_option.index %></td>
+      	    <td><%= project_option.name %></td>
+      	    <td><%= "#{project_option.price}円"%></td>
+      	    <td><%= @project_vote_counts[i] %></td>
+      	  </tr>
+      	  <% end %>
+      	</tbody>
+      </table>
+    </section>
+    <div class="center">
+      <%= link_to "プロジェクト一覧", projects_path, class: "btn btn-lg btn-primary" %>
+    </div>
+  </aside>
+</div>

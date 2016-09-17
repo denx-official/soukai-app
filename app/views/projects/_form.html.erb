@@ -1,0 +1,26 @@
+<%= form_for @project do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@project.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+            
+  <%= f.label :name, "プロジェクト名"%>
+  <%= f.text_field :name, class: 'form-control' %>
+      
+  <%= f.label :password ,"Password"%>
+  <%= f.password_field :password, class: 'form-control' %>
+      
+  <%= f.label :password_confirmation, "Passwordの確認" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      
+<% end %>

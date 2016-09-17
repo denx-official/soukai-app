@@ -4,13 +4,13 @@ class SoukaisController < ApplicationController
   before_action :admin_user
   
   def index
-    @soukais = Soukai.paginate(page: params[:page]).order("date").reverse_order
+    @soukais = Soukai.paginate(page: params[:page]).order("date desc")
   end
   
   def show
     @soukai = Soukai.find(params[:id])
     @user = []
-    Attendance.where("soukai_id = #{params[:id]}").order("user_id").each do |n|
+    Attendance.where(soukai_id: params[:id]).order("user_id").each do |n|
       @user << User.find(n.user_id)
     end
   end
@@ -23,7 +23,7 @@ class SoukaisController < ApplicationController
     @soukai = Soukai.new(soukai_params)
     if @soukai.save
       flash[:info] = "総会が登録されました"
-      redirect_to root_url
+      redirect_to new_soukai_path
     else
       render 'new'
     end
@@ -54,11 +54,6 @@ class SoukaisController < ApplicationController
       def soukai_params
         params.require(:soukai).permit(:name, :date, :password,
                                      :password_confirmation)
-      end
-      
-      def admin_user
-        # 管理者かどうか確認
-        redirect_to(root_url) unless current_user.admin?
       end
   
 end
