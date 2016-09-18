@@ -2,7 +2,7 @@
 <div class="row">
   <aside class="col-md-8 col-md-offset-2">
     <section>
-      <h1 class="center" style="font-size: 40px;"><%= @project.name %></h1>
+      <h1 class="center" style="font-size: 40px;"><%= @project.name %> (立案者:<%= @planner.name %>)</h1>
       <table class="table">
         <thead>
             <th>No</th>
@@ -17,14 +17,23 @@
       	    <td><%= project_option.option_number %></td>
       	    <td><%= project_option.name %></td>
       	    <td><%= "#{project_option.price}円"%></td>
-      	    <td><%= @project_vote_counts[i] %></td>
+      	    <td><%= @vote_counts[i] %></td>
       	    <td><%= project_option.remarks %></td>
       	  </tr>
       	  <% end %>
+      	  <tr>
+      	    <td></td>
+      	    <td colspan="2">反対</td>
+      	    <td><%= @disapproved_count %></td>
+      	    <td></td>
+      	  </tr>
       	</tbody>
       </table>
     </section>
     <div class="center">
+      <% if project_create_user?(@project) %>
+      <%= link_to "プロジェクト編集", edit_project_path, class: "btn btn-lg btn-primary" %>
+      <% end %>
       <%= link_to "プロジェクト一覧", projects_path, class: "btn btn-lg btn-primary" %>
     </div>
   </aside>

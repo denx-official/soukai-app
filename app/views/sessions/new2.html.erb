@@ -3,25 +3,26 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag login_path, method: "post" do %>
+    <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= label_tag :email %>
-      <%= text_field_tag :email, nil, class: 'form-control' %>
-      <%= select_tag :domain , options_for_select(@domain),
-          include_blank: '-- 未指定 --', class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+      <%= f.select :domain, options_for_select(@domain, include_blank: '-- 未指定 --'),
+          {}, class: 'form-control' %>
       
-      <%= label_tag :password %>
+      <%= f.label :password %>
       <%= link_to "(forgot password)", new_password_reset_path %>
-      <%= password_field_tag :password, nil, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control' %>
       
-      <%= label_tag :remember_me, class: "checkbox inline" do %>
-        <%= check_box_tag :remember_me, style: "width: 5px; height: 5px;"%>
-        <span>ログインを保持</span>
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span class="checkbox-icon">ログインを保持</span>
       <% end %>
       
-      <%= submit_tag "Log in", class: "btn btn-primary" %>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
 
     <p>まだ登録していない人は登録してください <%= link_to "登録ページ", signup_path %></p>
+    <p><%= link_to "テキストボックスでログイン", login_path %></p>
   </div>
 </div>

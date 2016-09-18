@@ -1,0 +1,19 @@
+<% provide(:title, "vote") %>
+<h1>投票</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for votes_path, :method => :post do |f|%>
+
+      <%= f.label :project_id %>
+      <% project = @projects.map{|project| [project.name, project.id,
+          data: {children_path: vote_project_options_path(project) }] } %>
+      <%= f.select :project_id, project, {}, class: "form-control input-sm" %>
+      
+      
+      
+      <div style="padding-top:10px"> </div>
+      <%= submit_tag "投票", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

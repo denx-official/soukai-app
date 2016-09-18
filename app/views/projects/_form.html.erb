@@ -16,7 +16,9 @@
     <%= f.text_field :name, class: 'form-control' %>
     
     <%= f.label :soukai_id, "決議総会"%>
-    <%= f.collection_select :soukai_id, @soukais, :id, :name, {}, class: 'form-control' %>
+    <%= f.collection_select :soukai_id, @soukais, :id, :name, {}, ｇいt
+    
+    <%= f.hidden_field :user_id, value: current_user.id %>
         
     <%= f.label :password ,"Password"%>
     <%= f.password_field :password, class: 'form-control' %>

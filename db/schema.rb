@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918121524) do
+ActiveRecord::Schema.define(version: 20160918154843) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "soukai_id"
@@ -28,14 +28,6 @@ ActiveRecord::Schema.define(version: 20160918121524) do
     t.text     "remarks"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "project_votes", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "project_option_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -72,5 +64,13 @@ ActiveRecord::Schema.define(version: 20160918121524) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "project_option_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
 end

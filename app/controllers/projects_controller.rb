@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   include Common
+  before_action :set_project_id, only: [:new, :create, :edit, :update]
+  before_action :set_soukais, only: [:new, :create, :edit]
+  before_action :project_create_user, only: [:edit, :update, :destroy]
   
   def index
     @projects = Project.paginate(page: params[:page])
@@ -12,44 +15,35 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find(params[:id])
+    @planner = User.find(@project.user_id.to_i)
     @project_options = ProjectOption.where(project_id: params[:id])
-    project_votes = ProjectVote.where(project_id: params[:id])
+    votes = Vote.where(project_id: params[:id])
     
-    @project_vote_counts = {}
+    @vote_counts = {}
     @project_options.size.times.with_index do |i|
-      @project_vote_counts[i] = project_votes.where(project_option_id: i+1).size
+      @vote_counts[i] = votes.where(project_option_id: i+1).size
     end
+    @disapproved_count = votes.where(project_option_id: nil).try(:size) || 0
   end
   
   def new
-    @soukais = Soukai.narrow_year(Date.today.year).order("date").reverse_order
-    @last_project_id = Project.last.id.to_i
     @project = Project.new
     @project.project_option.build
   end
   
   def create
-    @soukais = Soukai.narrow_year(Date.today.year)
     @project = Project.new(project_params)
     # binding pry
     if @project.save 
       flash[:info] = "プロジェクトが登録されました"
-      redirect_to new_project_path
+      redirect_to @project
     else
       render 'new'
     end
   end
   
-  
-  
-  
-  
-  
-  
   def edit
     @project = Project.find(params[:id])
-    @project.project_option.build
-    @soukais = Soukai.narrow_year(Date.today.year).order("date").reverse_order
   end
   
   def update
@@ -63,20 +57,28 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
+    Project.find(params[:id]).destroy
+    flash[:success] = "プロジェクトを削除しました"
+    redirect_to projects_url
   end
   
   private
     def project_params
       params.require(:project).permit(
-        :name, :soukai_id, :password, :password_confirmation,
-        project_option_attributes: [:id, :option_index, :name, :price, :project_id, :remarks, :_destroy]
+        :name, :soukai_id, :user_id, :password, :password_confirmation,
+        project_option_attributes: [:id, :name, :price, :project_id, :remarks, :_destroy]
         )
     end
     
-    def set_project_option_params(project)
-      params[:project][:project_option_attributes].each_with_index do |project_option, index|
-        params[:project][:project_option_attributes]["#{index}"].store("option_index", "#{index+1}")
-        params[:project][:project_option_attributes]["#{index}"].store("project_id", "#{project.id}")
-      end
+    def set_project_id
+      @last_project_id = Project.last.id.to_i
+    end
+    
+    def set_soukais
+      @soukais = Soukai.narrow_year(Date.today.year)
+    end
+    
+    def project_create_user
+      redirect_to(root_url) unless current_user.admin? || Project.find(params[:id])[:user_id] == current_user
     end
 end

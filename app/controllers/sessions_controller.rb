@@ -1,32 +1,22 @@
 class SessionsController < ApplicationController
   include Common
   layout :select_layout
+  before_action :set_domain, only: [:new2, :create]
   
   def new
   end
   
   def new2
-    set_domain
   end
 
   def create
-    set_domain
-    if params[:session].present?
-      email = params[:session][:email]
-      password = params[:session][:password]
-      remember_me = params[:session][:remember_me]
-    else
-      email = params[:email].to_s + params[:domain].to_s
-      password = params[:password]
-      remember_me = params[:remember_me]
-    end
-    
-    user = User.find_by(email: email)
-    if user && user.authenticate(password)
+    @email = params[:session][:domain].present? ? params[:session][:email].to_s + params[:session][:domain].to_s : params[:session][:email]
+    user = User.find_by(email: @email.downcase)
+    if user && user.authenticate(params[:session][:password])
       if user.activated?
         log_in user
-        remember_me == '1' ? remember(user) : forget(user)
-        redirect_back_or user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_to root_url
       else
         message  = "アカウントが有効化されてません。"
         message += "アクティブメールを確認して、有効化リンクを踏んでください。"
@@ -43,5 +33,15 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
+  private
+    def set_domain
+      num = 1
+      @domain = []
+      while num < 10 do
+        @domain << "@mail" + num.to_s + ".doshisha.ac.jp"
+        num += 1
+      end
+    end
   
 end

@@ -4,7 +4,7 @@ class SoukaisController < ApplicationController
   before_action :admin_user
   
   def index
-    @soukais = Soukai.paginate(page: params[:page]).order("date desc")
+    @soukais = Soukai.paginate(page: params[:page])
   end
   
   def show
@@ -23,7 +23,7 @@ class SoukaisController < ApplicationController
     @soukai = Soukai.new(soukai_params)
     if @soukai.save
       flash[:info] = "総会が登録されました"
-      redirect_to new_soukai_path
+      redirect_to @soukai
     else
       render 'new'
     end
@@ -45,7 +45,7 @@ class SoukaisController < ApplicationController
   
   def destroy
     Soukai.find(params[:id]).destroy
-    flash[:success] = "Soukai deleted"
+    flash[:success] = "総会を削除しました"
     redirect_to soukais_url
   end
   

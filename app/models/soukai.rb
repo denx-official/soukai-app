@@ -14,9 +14,9 @@ class Soukai < ActiveRecord::Base
   
   def Soukai.narrow_year(year)
     if Rails.env.development?
-      Soukai.where("cast(strftime('%Y', date) as int) = ?", year)
+      Soukai.where("cast(strftime('%Y', date) as int) = ?", year).order("date desc")
     else
-      Soukai.where("extract(year  from date) = ?", year)
+      Soukai.where("extract(year  from date) = ?", year).order("date desc")
     end
   end
     
