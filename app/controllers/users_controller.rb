@@ -55,6 +55,11 @@ class UsersController < ApplicationController
   end
   
     private
+    
+        def user_params
+          params.require(:user).permit(:name, :email, :password,
+                                        :password_confirmation)
+        end
       
       def set_entrance_year
         @entrance_years = (Date.today.year-10..Date.today.year).to_a

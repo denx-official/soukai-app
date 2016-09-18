@@ -9,14 +9,16 @@
       			<th>オプション</th>
       			<th>値段</th>
       			<th>投票数</th>
+      			<th>備考</th>
       	</thead>
       	<tbody>
       	  <% @project_options.each_with_index do |project_option, i| %>
       	  <tr>
-      	    <td><%= project_option.index %></td>
+      	    <td><%= project_option.option_number %></td>
       	    <td><%= project_option.name %></td>
       	    <td><%= "#{project_option.price}円"%></td>
       	    <td><%= @project_vote_counts[i] %></td>
+      	    <td><%= project_option.remarks %></td>
       	  </tr>
       	  <% end %>
       	</tbody>

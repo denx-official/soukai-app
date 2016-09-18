@@ -39,12 +39,14 @@ end
                   soukai_id: project_id,
                   password: "password")
   
-  (1..3).each do |option_index|
-    ProjectOption.create!(name: "オプション" + option_index.to_s,
-                          index: option_index,
+  (1..3).each do |i|
+    ProjectOption.create!(
+                          name: "オプション" + i.to_s,
+                          option_number: i,
                           price: 20000,
                           project_id: project_id,
-                          remarks: "そり")
+                          remarks: "そり"
+                          )
   end
 end
 

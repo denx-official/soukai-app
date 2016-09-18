@@ -1,10 +1,5 @@
 module Common
   extend ActiveSupport::Concern
-  
-  def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                  :password_confirmation)
-  end
       
   # beforeフィルター
 

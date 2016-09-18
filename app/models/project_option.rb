@@ -1,3 +1,3 @@
 class ProjectOption < ActiveRecord::Base
-  has_many :project
+  belongs_to :project
 end

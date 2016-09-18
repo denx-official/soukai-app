@@ -1,4 +1,4 @@
 class ProjectVote < ActiveRecord::Base
-  has_many :project
-  has_many :user
+  belongs_to :project
+  belongs_to :user
 end

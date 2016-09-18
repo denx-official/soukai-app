@@ -1,6 +1,7 @@
 <tr>
-  <th><%= link_to project.name, project %></th>
-  <th><%= link_to "編集", edit_project_path(project.id) %></th>
-  <th><%= link_to "削除", project, method: :delete,
-                        data: { confirm: "You sure?" }%></th>
+  <td><%= link_to project.name, project %></td>
+  <td><%= @soukai_name[project.soukai_id] %></td>
+  <td><%= link_to "編集", edit_project_path(project.id) %></td>
+  <td><%= link_to "削除", project, method: :delete,
+                        data: { confirm: "You sure?" }%></td>
 </tr>

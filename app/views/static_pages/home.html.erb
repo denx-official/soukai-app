@@ -6,6 +6,7 @@
   </h2>
   <% if current_user.present? %>
     <%= link_to "出席", attend_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "プロジェクト登録", 'projects/new', class: "btn btn-lg btn-primary" %>
     <% if current_user.admin? %>
       <%= link_to "総会を登録", 'soukais/new', class: "btn btn-lg btn-primary" %>
     <% end %>

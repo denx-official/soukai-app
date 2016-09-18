@@ -3,6 +3,11 @@ class ProjectsController < ApplicationController
   
   def index
     @projects = Project.paginate(page: params[:page])
+    soukais = Soukai.find(@projects.map(&:soukai_id))
+    @soukai_name = {}
+    soukais.each do |soukai|
+      @soukai_name[soukai.id] = soukai.name
+    end
   end
   
   def show
@@ -17,22 +22,34 @@ class ProjectsController < ApplicationController
   end
   
   def new
+    @soukais = Soukai.narrow_year(Date.today.year).order("date").reverse_order
+    @last_project_id = Project.last.id.to_i
     @project = Project.new
-    @project_option = ProjectOption.new
+    @project.project_option.build
   end
   
   def create
+    @soukais = Soukai.narrow_year(Date.today.year)
     @project = Project.new(project_params)
-    @project_option = ProjectOption.new(project_params)
-    if @project.save
+    # binding pry
+    if @project.save 
       flash[:info] = "プロジェクトが登録されました"
+      redirect_to new_project_path
     else
       render 'new'
     end
   end
   
+  
+  
+  
+  
+  
+  
   def edit
     @project = Project.find(params[:id])
+    @project.project_option.build
+    @soukais = Soukai.narrow_year(Date.today.year).order("date").reverse_order
   end
   
   def update
@@ -50,5 +67,16 @@ class ProjectsController < ApplicationController
   
   private
     def project_params
+      params.require(:project).permit(
+        :name, :soukai_id, :password, :password_confirmation,
+        project_option_attributes: [:id, :option_index, :name, :price, :project_id, :remarks, :_destroy]
+        )
+    end
+    
+    def set_project_option_params(project)
+      params[:project][:project_option_attributes].each_with_index do |project_option, index|
+        params[:project][:project_option_attributes]["#{index}"].store("option_index", "#{index+1}")
+        params[:project][:project_option_attributes]["#{index}"].store("project_id", "#{project.id}")
+      end
     end
 end
