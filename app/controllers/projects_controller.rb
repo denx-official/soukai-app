@@ -26,8 +26,7 @@ class ProjectsController < ApplicationController
     @project_options.each_with_index do |project_option, i|
       @vote_counts[i] = project_option_votes.count(project_option.id)
     end
-    @disapproved_count = @votes.where(project_option_id: nil).try(:size) || 0
-    # binding pry
+    @disapproved_count = @votes.where(project_option_id: 0).try(:size) || 0
   end
   
   def new
@@ -68,7 +67,7 @@ class ProjectsController < ApplicationController
   private
     def project_params
       params.require(:project).permit(
-        :name, :soukai_id, :user_id, :password, :password_confirmation,
+        :name, :soukai_id, :user_id,
         project_option_attributes: [:id, :name, :price, :project_id, :remarks, :_destroy]
         )
     end

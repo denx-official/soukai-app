@@ -8,7 +8,7 @@ class VotesController < ApplicationController
     if params[:project_id].present?
       @project_id = params[:project_id].to_i
       @project_options = ProjectOption.where(project_id: params[:project_id]).map{|p| [p.name, p.id]}
-      @project_options << ["反対", nil]
+      @project_options << ["反対", 0]
     else
       flash.now[:danger] = 'プロジェクトを選択してください'
       render 'select_project'
@@ -21,7 +21,6 @@ class VotesController < ApplicationController
   
   def create
     vote = Vote.new(vote_params)
-    # binding pry
       if vote.save
         flash[:info] = "投票しました"
         redirect_to project_path(params[:vote][:project_id])

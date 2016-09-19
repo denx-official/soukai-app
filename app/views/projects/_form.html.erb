@@ -20,12 +20,6 @@
     <%= f.collection_select :soukai_id, @soukais, :id, :name, {}, class: 'form-control' %>
     
     <%= f.hidden_field :user_id, value: current_user.id %>
-        
-    <%= f.label :password ,"Password"%>
-    <%= f.password_field :password, class: 'form-control' %>
-        
-    <%= f.label :password_confirmation, "Passwordの確認" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
   
   <table class="table table-striped table-bordered table-hover">

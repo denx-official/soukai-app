@@ -10,7 +10,7 @@
     <%= link_to "投票", select_project_votes_path, class: "btn btn-lg btn-primary" %>
   </div>
   <div style="padding-top: 10px;">
-    <%= link_to "プロジェクト登録", new_project_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "プロジェクトを登録", new_project_path, class: "btn btn-lg btn-primary" %>
     <% if current_user.admin? %>
       <%= link_to "総会を登録", new_soukai_path, class: "btn btn-lg btn-primary" %>
     <% end %>

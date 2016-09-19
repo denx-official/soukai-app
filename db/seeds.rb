@@ -37,8 +37,7 @@ end
 (1..5).each do |project_id|
   Project.create!(name: (project_id).to_s+"月プロジェクト",
                   soukai_id: project_id,
-                  user_id: 1,
-                  password: "password")
+                  user_id: 1)
   
   (1..3).each do |i|
     ProjectOption.create!(
