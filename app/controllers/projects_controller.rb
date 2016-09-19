@@ -72,7 +72,7 @@ class ProjectsController < ApplicationController
     end
     
     def set_new_project_id
-      @project_id = Project.last.id.to_i + 1
+      @project_id = Project.last.present ? Project.last.id.to_i + 1 : 0
     end
     
     def set_project_id
