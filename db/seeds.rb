@@ -34,7 +34,7 @@ end
   end
 end
 
-(1..3).each do |project_id|
+(1..5).each do |project_id|
   Project.create!(name: (project_id).to_s+"月プロジェクト",
                   soukai_id: project_id,
                   user_id: 1,
@@ -50,8 +50,9 @@ end
   end
 end
 
-20.times do |user_id|
-  Vote.create!(project_id: (1..3).to_a.sample,
-               user_id: (1..19).to_a.sample,
+user_id = (1..19).to_a.sort_by{rand}
+12.times do |i|
+  Vote.create!(project_id: 1,
+               user_id: user_id[i],
                project_option_id: (1..3).to_a.sample)
 end

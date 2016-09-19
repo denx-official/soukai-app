@@ -21,9 +21,10 @@ class ProjectsController < ApplicationController
     @project_options = ProjectOption.where(project_id: params[:id])
     @votes = Vote.where(project_id: params[:id])
     
+    project_option_votes = @votes.map(&:project_option_id)
     @vote_counts = {}
     @project_options.each_with_index do |project_option, i|
-      @vote_counts[i] = @votes.where(project_option_id: project_option.id).size
+      @vote_counts[i] = project_option_votes.count(project_option.id)
     end
     @disapproved_count = @votes.where(project_option_id: nil).try(:size) || 0
     # binding pry

@@ -4,7 +4,6 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "ホーム",  root_path %></li>
-        <li><%= link_to "ヘルプ",  help_path %></li>
         <% if logged_in? %>
           <li><%= link_to "出席",  attend_path %></li>
           <li><%= link_to "投票",  select_project_votes_path %></li>
@@ -22,9 +21,8 @@
               <li><%= link_to "出席状況", current_user %></li>
               <li><%= link_to "アカウント設定", edit_user_path(current_user) %></li>
               <li class="divider"></li>
-              <li>
-                <%= link_to "ログアウト", logout_path, method: "delete" %>
-              </li>
+              <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
+              <li><%= link_to "ヘルプ",  help_path %></li>
             </ul>
           </li>
         <% else %>

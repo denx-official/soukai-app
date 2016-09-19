@@ -16,15 +16,11 @@ class AttendancesController < ApplicationController
       soukai = @soukai.find(params[:attendance][:soukai_id])
       @attendance = Attendance.new(soukai_id: params[:attendance][:soukai_id], user_id: current_user.id)
       if @attendance && soukai.authenticate(params[:attendance][:password])
-        if Attendance.where(user_id: current_user.id).where(soukai_id: params[:attendance][:soukai_id]).blank?
-          if @attendance.save
-            flash[:info] = "出席しました"
-            redirect_to root_url
-          else
-            render 'new'
-          end
+        if @attendance.save
+          flash[:info] = "出席しました"
+          redirect_to root_url
         else
-          flash.now[:info] = 'すでに出席は完了してます'
+          flash.now[:warning] = "#{soukai.name}はすでに出席してます"
           render 'new'
         end
       else
