@@ -5,7 +5,8 @@ class VotesController < ApplicationController
   
   def new
     soukai_id = Soukai.narrow_year(Date.today.year).map(&:id)
-    @projects = Project.where(soukai_id: soukai_id).order("id desc")
+    @project_id = Project.where(soukai_id: soukai_id).order("id desc").map{|project| [project.name, project.id]}
+    @project_options = ProjectOption.where(project_id: @project_id.map{|p| p[1]})
     @vote = Vote.new
   end
   
@@ -26,26 +27,28 @@ class VotesController < ApplicationController
     end
   end
   
+  def project_options_select
+  # ajax によるリクエストの場合のみ処理
+    if request.xhr?
+      if params[:vote_id].present? && params[:vote_id].to_s != 'votes'
+        vote = vote.find(params[:vote_id])
+      else
+        vote = Vote.new
+      end
+  
+      project_options = ProjectOption.select(:id, :name).where(project_id: params[:project_id])
+  
+      render partial: '/votes/form_project_options', locals: { vote: vote, project_options: project_options}
+    end
+  end
+  
   private
       # ログイン済みユーザーかどうか確認
       def logged_in_user
         unless logged_in?
-          store_location
+          vote_location
           flash[:danger] = "Please log in."
           redirect_to login_url
         end
       end
-    
-    def detail_areas_select
-      # ajax によるリクエストの場合のみ処理
-      if request.xhr?
-        if params[:store_id].present? && params[:store_id].to_s != 'stores'
-          store = Store.find(params[:store_id])
-        else
-          store = Store.new
-        end
-        detail_ares = Detail_area.select(:id, :name).where(pref_id: params[:pref_id])
-        render partial: '/stores/form_detail_areas', locals: { store: store, detail_areas: detail_areas}
-      end
-    end
 end

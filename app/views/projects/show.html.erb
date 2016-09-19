@@ -5,8 +5,7 @@
       <h1 class="center" style="font-size: 40px;"><%= @project.name %> (立案者:<%= @planner.name %>)</h1>
       <table class="table">
         <thead>
-            <th>No</th>
-      			<th>オプション</th>
+      			<th>オプション名</th>
       			<th>値段</th>
       			<th>投票数</th>
       			<th>備考</th>
@@ -14,7 +13,6 @@
       	<tbody>
       	  <% @project_options.each_with_index do |project_option, i| %>
       	  <tr>
-      	    <td><%= project_option.option_number %></td>
       	    <td><%= project_option.name %></td>
       	    <td><%= "#{project_option.price}円"%></td>
       	    <td><%= @vote_counts[i] %></td>

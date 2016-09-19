@@ -43,7 +43,6 @@ end
   (1..3).each do |i|
     ProjectOption.create!(
                           name: "オプション" + i.to_s,
-                          option_number: i,
                           price: 20000,
                           project_id: project_id,
                           remarks: "そり"

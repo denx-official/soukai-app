@@ -1,0 +1,11 @@
+<%= form_tag votes_path, :method => :post do |f|%>
+
+  <%= label_tag :project_id %>
+  <%= select_tag :project_id, options_for_select(@project_id), class: "form-control input-sm" %>
+  
+  <%= render 'form_project_options', vote: @vote, project_options: @project_options %>
+  
+  <div style="padding-top:10px"> </div>
+  <%= submit_tag "投票", class: "btn btn-primary" %>
+<% end %>
+

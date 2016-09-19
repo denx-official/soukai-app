@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
   include Common
-  before_action :set_project_id, only: [:new, :create, :edit, :update]
+  before_action :set_new_project_id, only: [:new, :create]
+  before_action :set_project_id, only: [:edit, :update]
   before_action :set_soukais, only: [:new, :create, :edit]
-  before_action :project_create_user, only: [:edit, :update, :destroy]
+  before_action :project_create_user?, only: [:edit, :update, :destroy]
   
   def index
     @projects = Project.paginate(page: params[:page])
@@ -32,8 +33,8 @@ class ProjectsController < ApplicationController
   end
   
   def create
+    @project_id = Project.last.id.to_i + 1
     @project = Project.new(project_params)
-    # binding pry
     if @project.save 
       flash[:info] = "プロジェクトが登録されました"
       redirect_to @project
@@ -70,15 +71,19 @@ class ProjectsController < ApplicationController
         )
     end
     
+    def set_new_project_id
+      @project_id = Project.last.id.to_i + 1
+    end
+    
     def set_project_id
-      @last_project_id = Project.last.id.to_i
+      @project_id = Project.find(params[:id]).id.to_i
     end
     
     def set_soukais
       @soukais = Soukai.narrow_year(Date.today.year)
     end
     
-    def project_create_user
+    def project_create_user?
       redirect_to(root_url) unless current_user.admin? || Project.find(params[:id])[:user_id] == current_user
     end
 end

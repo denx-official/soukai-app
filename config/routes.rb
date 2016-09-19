@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :attendances,         only: [:new, :create]
   resources :projects
   resources :votes,        only: [:new, :create] do
-    resources :project_options, only: :index
+    collection do
+     :project_options_select
+    end
   end
 end

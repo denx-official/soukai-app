@@ -1,0 +1,4 @@
+<div id="project_options_select" class="field">
+  <%= label_tag :project_option_id %><br>
+  <%= select_tag :project_id, options_from_collection_for_select(project_options, "id", "name"), class: "form-control input-sm" %>
+ </div>
