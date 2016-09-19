@@ -1,9 +1,21 @@
 <% provide(:title, "vote") %>
-<h1>投票</h1>
+<h1>投票(やり直しできません)</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for @vote do |f| %>
+      <% if @vote.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@vote.errors.count, "error") %>.
+          </div>
+          <ul>
+          <% @vote.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
       <%= f.hidden_field :project_id, value: @project_id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.label :project_option_id %><br>

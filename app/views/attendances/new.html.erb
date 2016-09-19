@@ -1,13 +1,14 @@
 <% provide(:title, "attend") %>
+<% @attendance = Attendance.new unless @attendance %>
 <h1>出席</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for @attendance, :url => {:action => :create} do |f| %>
+    <%= form_for @attendance do |f| %>
 
       <%= f.label :soukai_id %>
       <%= f.collection_select :soukai_id, @soukai, :id, :name,
-                {prompt: false}, {class: "form-control input-sm"}%>
+                {prompt: false}, {class: "form-control"}%>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>

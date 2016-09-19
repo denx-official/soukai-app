@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   layout :select_layout
   before_action :set_new_project_id, only: [:new, :create]
   before_action :set_project_id, only: [:edit, :update]
-  before_action :set_soukais, only: [:new, :create, :edit]
+  before_action :set_soukais, only: [:new, :create, :edit, :update]
   before_action :project_create_user?, only: [:edit, :update, :destroy]
   
   def index
@@ -35,7 +35,6 @@ class ProjectsController < ApplicationController
   end
   
   def create
-    @project_id = Project.last.id.to_i + 1
     @project = Project.new(project_params)
     if @project.save 
       flash[:info] = "プロジェクトが登録されました"

@@ -2,7 +2,8 @@ class Soukai < ActiveRecord::Base
   has_secure_password
   validates :name,  presence: true, length: { maximum: 50 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  has_many :attendance
+  has_many :attendance, dependent: :destroy
+  has_many :project, dependent: :destroy
   
   def Soukai.narrow_month(month)
     if Rails.env.development?
