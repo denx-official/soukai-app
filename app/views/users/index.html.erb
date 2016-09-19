@@ -1,15 +1,15 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 <div class="row">
-    <%= form_tag users_url, method: "GET", class: "form-horizontal panel" do%>
+    <%= form_tag users_url, method: "GET", class: "form-horizontal panel center" do%>
       <div class="form-group" >
-        <label for="name" class="control-label col-sm-2">name</label>
-        <div class="col-sm-4">
-          <%= text_field_tag :name, params[:name], class: "form-control col-sm-4" %>
+        <label for="name" class="control-label col-md-2">name</label>
+        <div class="col-md-4">
+          <%= text_field_tag :name, params[:name], class: "form-control col-md-4" %>
           </div>
       </div>
       
-      <div class="col-md-2 col-sm-offset-2">
+      <div class="col-md-2 col-md-offset-2">
           <%= submit_tag "検索", class: "btn btn-primary" %>
         </div>
     <% end %>

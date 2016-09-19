@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 20160919042246) do
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.integer  "soukai_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.string   "password_digest"
   end
 
   create_table "soukais", force: :cascade do |t|

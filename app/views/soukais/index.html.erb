@@ -5,9 +5,7 @@
   <tr>
     <th>名前</th><th>日付</th>
   </tr>
-    <%= will_paginate %>
-      <%= render @soukais %>
-    <%= will_paginate %>
+    <%= render @soukais %>
 </table>
 
 <div class="center"><%= link_to "総会を登録", 'soukais/new', class: "btn btn-lg btn-primary" %></div>

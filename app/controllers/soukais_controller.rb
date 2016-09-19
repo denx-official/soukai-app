@@ -4,7 +4,7 @@ class SoukaisController < ApplicationController
   before_action :admin_user
   
   def index
-    @soukais = Soukai.paginate(page: params[:page])
+    @soukais = Soukai.narrow_year(Date.today.year)
   end
   
   def show
