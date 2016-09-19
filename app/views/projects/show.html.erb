@@ -29,6 +29,7 @@
       </table>
     </section>
     <div class="center">
+      <%= link_to "投票", select_project_votes_path, class: "btn btn-lg btn-primary" %>
       <% if project_create_user?(@project) %>
       <%= link_to "プロジェクト編集", edit_project_path, class: "btn btn-lg btn-primary" %>
       <% end %>

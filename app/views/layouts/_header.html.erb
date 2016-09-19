@@ -3,21 +3,21 @@
     <%= link_to "soukai app", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "ホーム",    root_path %></li>
-        <li><%= link_to "ヘルプ",    help_path %></li>
+        <li><%= link_to "ホーム",  root_path %></li>
+        <li><%= link_to "ヘルプ",  help_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "出席",      attend_path %></li>
-          <li><%= link_to "投票",      new_vote_path %></li>
+          <li><%= link_to "出席",  attend_path %></li>
+          <li><%= link_to "投票",  select_project_votes_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="glyphicon glyphicon-off" aria-hidden="true" style="font-size: 20px;"></span>
               <b class="caret" style="height: 10px;"></b>
             </a>
             <ul class="dropdown-menu">
-              <% if current_user.admin? %>
-                <li><%= link_to "ユーザー一覧", users_path %></li>
-                <li><%= link_to "総会一覧", soukais_path %></li>
-              <% end %>
+            <% if current_user.admin? %>
+              <li><%= link_to "ユーザー一覧", users_path %></li>
+              <li><%= link_to "総会一覧", soukais_path %></li>
+            <% end %>
               <li><%= link_to "プロジェクト一覧", projects_path %></li>
               <li><%= link_to "出席状況", current_user %></li>
               <li><%= link_to "アカウント設定", edit_user_path(current_user) %></li>

@@ -18,13 +18,14 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @planner = User.find(@project.user_id.to_i)
     @project_options = ProjectOption.where(project_id: params[:id])
-    votes = Vote.where(project_id: params[:id])
+    @votes = Vote.where(project_id: params[:id])
     
     @vote_counts = {}
-    @project_options.size.times.with_index do |i|
-      @vote_counts[i] = votes.where(project_option_id: i+1).size
+    @project_options.each_with_index do |project_option, i|
+      @vote_counts[i] = @votes.where(project_option_id: project_option.id).size
     end
-    @disapproved_count = votes.where(project_option_id: nil).try(:size) || 0
+    @disapproved_count = @votes.where(project_option_id: nil).try(:size) || 0
+    # binding pry
   end
   
   def new

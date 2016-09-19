@@ -7,7 +7,7 @@
   <% if current_user.present? %>
   <div>
     <%= link_to "出席", attend_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to "投票", new_vote_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "投票", select_project_votes_path, class: "btn btn-lg btn-primary" %>
   </div>
   <div style="padding-top: 10px;">
     <%= link_to "プロジェクト登録", new_project_path, class: "btn btn-lg btn-primary" %>

@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :votes,        only: [:new, :create] do
     collection do
-     :project_options_select
+      get :select_project
+      :project_options_select
     end
   end
 end
