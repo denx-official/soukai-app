@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   include Common
+  layout :select_layout
   before_action :set_new_project_id, only: [:new, :create]
   before_action :set_project_id, only: [:edit, :update]
   before_action :set_soukais, only: [:new, :create, :edit]
