@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
-  has_many :attendance
+  has_many :attendance, dependent: :destroy
   
   # 与えられた文字列のハッシュ値を返す 
   def User.digest(string)

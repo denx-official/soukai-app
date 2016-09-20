@@ -1,7 +1,7 @@
 class SoukaisController < ApplicationController
   include Common
   layout        :select_layout
-  before_action :admin_user
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
     @soukais = Soukai.narrow_year(Date.today.year)

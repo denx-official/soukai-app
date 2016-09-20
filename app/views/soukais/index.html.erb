@@ -8,6 +8,7 @@
     <%= render @soukais %>
 </table>
 
-<div class="center"><%= link_to "総会を登録", 'soukais/new', class: "btn btn-lg btn-primary" %></div>
-
+<% if current_user.admin? %>
+  <div class="center"><%= link_to "総会を登録", 'soukais/new', class: "btn btn-lg btn-primary" %></div>
+<% end %>
 
