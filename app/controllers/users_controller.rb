@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include Common
   layout        :select_layout
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy]
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]

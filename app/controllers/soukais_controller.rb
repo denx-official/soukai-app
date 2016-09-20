@@ -1,6 +1,7 @@
 class SoukaisController < ApplicationController
   include Common
   layout        :select_layout
+  before_action :logged_in_user
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
   
   def index
