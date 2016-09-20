@@ -11,7 +11,7 @@ if Rails.env.development?
   18.times do |n|
     name  = Faker::Name.name
     mail = "exm#{n+1000}@mail4.doshisha.ac.jp"
-    entrance_year = 2016
+    entrance_year = (2006..2016).to_a.sample
     User.create!(name:  name,
                  email: mail,
                  password:              "password",

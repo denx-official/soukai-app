@@ -1,0 +1,25 @@
+<li>
+  <table class="table">
+    <tr>
+      <th style="width: 150px;">name
+      <% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to "delete", user, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+        <% end %>
+      </th>
+      <% @soukais.each do |soukai| %>
+        <th><%= soukai.name.delete("総会") %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <th width="90"><%= link_to user.name, user %></th>
+      <% @soukais.each do |soukai| %>
+        <th width="90">
+            <% if attend?(user, soukai.id) then %>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            <% end %>
+        </th>
+      <% end %>
+    </tr>
+  </table>
+</li>

@@ -8,10 +8,19 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page])
-    if params[:name] && params[:name].present?
+    @year = (2006..Date.today.year).to_a.reverse
+    @soukais = Soukai.narrow_year(Date.today.year).order("date")
+    
+    if params[:name].present?
       @users = @users.where(['name LIKE ?', "%#{params[:name]}%"])
     end
-    @soukais = Soukai.narrow_year(Date.today.year).order("date")
+    if params[:year].present?
+      @users = @users.where(entrance_year: params[:year])
+    end
+    if params[:soukai_id].present?
+      attendance = Attendance.where(soukai_id: params[:soukai_id]).map(&:user_id)
+      @users = @users.where(id: attendance)
+    end
   end
   
   def show
