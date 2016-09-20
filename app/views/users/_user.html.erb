@@ -12,13 +12,13 @@
       <% end %>
     </tr>
     <tr>
-      <th><%= link_to user.name, user %></th>
+      <th width="90"><%= link_to user.name, user %></th>
       <% @soukais.each do |soukai| %>
-        <th>
+        <th width="90">
             <% if attend?(user, soukai.id) then %>
               <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             <% end %>
-          </th>
+        </th>
       <% end %>
     </tr>
   </table>
