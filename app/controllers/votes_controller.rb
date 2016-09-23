@@ -8,6 +8,9 @@ class VotesController < ApplicationController
     if params[:project_id].present?
       @project_id = params[:project_id].to_i
       @project_options = ProjectOption.where(project_id: params[:project_id]).map{|p| [p.name, p.id]}
+      if @project_options.size == 1
+        @project_options = [["賛成", @project_options.first[1]]]
+      end
       @project_options << ["反対", 0]
     else
       flash.now[:danger] = 'プロジェクトを選択してください'
