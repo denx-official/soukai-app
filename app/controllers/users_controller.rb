@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]
   
   def index
-    @users = User.paginate(page: params[:page]).where(activated: true).order("entrance_year desc, id asc")
+    @users = User.paginate(page: params[:page], per_page: 15).where(activated: true).order("entrance_year desc, id asc")
     @year = (2006..Date.today.year).to_a.reverse
     @soukais = Soukai.narrow_year(Date.today.year).order("date asc")
     

@@ -8,7 +8,7 @@ User.create!(name:  "odk",
              entrance_year: 2016)
 
 if Rails.env.development?
-  18.times do |n|
+  30.times do |n|
     name  = Faker::Name.name
     mail = "exm#{n+1000}@mail4.doshisha.ac.jp"
     entrance_year = (2006..2016).to_a.sample
