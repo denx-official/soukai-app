@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save 
-      flash[:info] = "プロジェクトが登録されました"
+      flash[:info] = "企画が登録されました"
       redirect_to @project
     else
       render 'new'
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   
   def destroy
     Project.find(params[:id]).destroy
-    flash[:success] = "プロジェクトを削除しました"
+    flash[:success] = "企画を削除しました"
     redirect_to projects_url
   end
   

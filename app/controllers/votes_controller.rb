@@ -13,7 +13,7 @@ class VotesController < ApplicationController
       end
       @project_options << ["反対", 0]
     else
-      flash.now[:danger] = 'プロジェクトを選択してください'
+      flash.now[:danger] = "企画を選択してください"
       render 'select_project'
     end
     @vote = Vote.new
