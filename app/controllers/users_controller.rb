@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]
   
   def index
-    @users = User.paginate(page: params[:page]).where(activated: true)
+    @users = User.paginate(page: params[:page]).where(activated: true).order("entrance_year desc, id asc")
     @year = (2006..Date.today.year).to_a.reverse
-    @soukais = Soukai.narrow_year(Date.today.year).order("date")
+    @soukais = Soukai.narrow_year(Date.today.year).order("date asc")
     
     if params[:name].present?
       @users = @users.where(['name LIKE ?', "%#{params[:name]}%"])
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @soukais = Soukai.narrow_year(Date.today.year).order("date")
+    @soukais = Soukai.narrow_year(Date.today.year).order("date asc")
   end
   
   def new

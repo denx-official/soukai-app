@@ -1,5 +1,6 @@
 <tr>
   <th width="120"><%= link_to user.name, user %></th>
+  <th><%= user.entrance_year %></th>
   <% @soukais.each do |soukai| %>
   <th width="90">
     <% if attend?(user, soukai.id) then %>

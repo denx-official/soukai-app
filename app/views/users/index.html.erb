@@ -33,7 +33,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>name</th>
+      <th>名前</th>
+      <th>入学年度</th>
       <% @soukais.each do |soukai| %>
       <th><%= soukai.name.delete("総会") %></th>
       <% end %>
