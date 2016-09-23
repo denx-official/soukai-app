@@ -14,10 +14,8 @@
             <li><%= link_to "出席状況", current_user %></li>
             <li><%= link_to "投票",  select_project_votes_path %></li>
             <li><%= link_to "プロジェクト一覧", projects_path %></li>
-          <% if current_user.admin? %>
             <li><%= link_to "ユーザー一覧", users_path %></li>
             <li><%= link_to "総会一覧", soukais_path %></li>
-          <% end %>
             <li><%= link_to "アカウント設定", edit_user_path(current_user) %></li>
             <li class="divider"></li>
             <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
