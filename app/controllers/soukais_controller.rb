@@ -11,7 +11,7 @@ class SoukaisController < ApplicationController
   def show
     @soukai = Soukai.find(params[:id])
     @user = []
-    Attendance.where(soukai_id: params[:id]).order("user_id asc").each do |n|
+    Attendance.where(soukai_id: params[:id]).order("created_at asc").each do |n|
       @user << User.find(n.user_id)
     end
   end

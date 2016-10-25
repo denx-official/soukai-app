@@ -1,6 +1,5 @@
 class AttendancesController < ApplicationController
   include Common
-  layout        :select_layout
   before_action :logged_in_user, only: [:new, :create]
   before_action :set_soukai, only: [:new, :create]
   
