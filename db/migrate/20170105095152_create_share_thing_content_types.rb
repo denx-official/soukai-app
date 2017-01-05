@@ -1,0 +1,9 @@
+class CreateShareThingContentTypes < ActiveRecord::Migration
+  def change
+    create_table :share_thing_content_types do |t|
+      t.string :name
+
+      t.timestamps null: false
+    end
+  end
+end

@@ -21,4 +21,5 @@ Rails.application.routes.draw do
       :project_options_select
     end
   end
+  resources :share_things, except: [:show]
 end

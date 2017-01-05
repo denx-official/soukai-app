@@ -11,13 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919042246) do
+ActiveRecord::Schema.define(version: 20170105102859) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "soukai_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "common_thing_content_types", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "common_things", force: :cascade do |t|
+    t.text     "content"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
+    t.integer  "content_type_id"
   end
 
   create_table "project_options", force: :cascade do |t|
@@ -35,6 +48,21 @@ ActiveRecord::Schema.define(version: 20160919042246) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+  end
+
+  create_table "share_thing_content_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "share_things", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "content_type_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "soukais", force: :cascade do |t|

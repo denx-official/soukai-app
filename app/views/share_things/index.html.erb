@@ -1,0 +1,31 @@
+<% provide(:title, 'share_things') %>
+<h1>SHARE THINGS</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @share_things.each do |share_thing| %>
+    <tr>
+      <th>
+        <%= share_thing.name %>
+      <% if share_thing.user_id == current_user.id || current_user.admin? %>
+        / <%= link_to "編集", edit_share_thing_path(share_thing.id) %> 
+        / <%= link_to "削除", share_thing, method: :delete, data: { confirm: "You sure?" }%>
+      <% end %>
+      </th>
+      <% if share_thing.content_type_id == 1 %>
+      <th><%= link_to share_thing.content, share_thing.content, :target=>["_blank"] %></th>
+      <% else %>
+      <th><%= share_thing.content %></th>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="center"><%= link_to "共有物を作成", new_share_thing_path, class: "btn btn-lg btn-primary" %></div>

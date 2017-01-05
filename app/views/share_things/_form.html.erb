@@ -1,0 +1,26 @@
+<%= form_for @share_thing do |f| %>
+  <% if @share_thing.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@share_thing.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% @share_thing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+            
+  <%= f.label :name ,"名前"%>
+  <%= f.text_field :name, class: 'form-control' %>
+      
+  <%= f.label :content_type_id ,"内容の種類"%>
+  <%= f.select :content_type_id, @content_type, {}, class: 'form-control' %>
+      
+  <%= f.label :content , "内容" %>
+  <%= f.text_area :content, class: 'form-control' %>
+      
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      
+<% end %>
