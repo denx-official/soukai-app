@@ -1,36 +1,52 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4 col-md-offset-4">
-    <section class="user_info">
-      <h1 class="center">
-        <%= @user.name %>
-        <% if current_user.admin? && !current_user?(@user) %>
-          | <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
-        <% end %>
-      </h1>
-      <table class="table">
-        <thead>
-      		<tr>
-      			<th>&nbsp;&nbsp;&nbsp;&nbsp;総会</th>
-      			<th>出欠</th>
-      		</tr>
-      	</thead>
-      	<tbody>
-      	  <% @soukais.each do |soukai| %>
-      	    <tr>
-        			<th>&nbsp;&nbsp;<%= soukai.name %></th>
-        			<td>
-        			  <% if attend?(@user, soukai.id) then %>
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
-                <% end %>
-        			</td>
-        		</tr>
-      		<% end %>
-      	</tbody>
-      </table>
-    </section>
+  <aside class="col-md-6 col-md-offset-3">
+
+  
+  <h1 class="center">
+    <%= @user.name %>
+    <% if current_user.admin? && !current_user?(@user) %>
+      | <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
+    <% end %>
+  </h1>
+    
+  <%= form_tag user_url(@user), method: "GET", class: "form-horizontal" do%>
+    <div class="form-group" style="padding-top: 20px;">
+      <%= label_tag :open_year, "開催年", class: "control-label col-sm-3" %>
+      <div class="col-sm-4">
+          <%= select_tag :open_year, options_for_select(@open_year, selected: params[:open_year]), class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-md-offset-3" style="padding-bottom:50px;">
+      <%= submit_tag "検索", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <thead>
+  		<tr>
+  			<th>&nbsp;&nbsp;&nbsp;&nbsp;総会</th>
+  			<th>出欠</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  	  <% @soukais.each do |soukai| %>
+  	    <tr>
+    			<th>&nbsp;&nbsp;<%= soukai.name %></th>
+      			<td>
+    			  <% if attend?(@user, soukai.id) then %>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="@"></span>
+            <% end %>
+    			</td>
+    		</tr>
+  		<% end %>
+  	</tbody>
+  </table>
+
+  <div class="center">
+    <%= link_to "ユーザー一覧", users_path, class: "btn btn-lg btn-primary" %>
+  </div>
+
   </aside>
-</div>
-<div class="center">
-  <%= link_to "ユーザー一覧", users_path, class: "btn btn-lg btn-primary" %>
 </div>

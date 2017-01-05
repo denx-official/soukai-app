@@ -1,6 +1,20 @@
 <% provide(:title, 'All soukais') %>
 <h1>All SOUKAI</h1>
 
+<%= form_tag soukais_url, method: "GET", class: "form-horizontal " do%>
+  
+  <div class="form-group" >
+    <%= label_tag :open_year, "開催年", class: "control-label col-sm-2" %>
+    <div class="col-sm-4">
+      <%= select_tag :open_year, options_for_select(@open_year, selected: params[:open_year]), class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-md-offset-2" style="padding-bottom:50px;">
+    <%= submit_tag "検索", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 <table class="table">
   <tr>
     <th>名前</th><th>日付</th>

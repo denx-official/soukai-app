@@ -3,9 +3,11 @@ class SoukaisController < ApplicationController
   layout        :select_layout
   before_action :logged_in_user
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_open_year, only: [:index]
   
   def index
-    @soukais = Soukai.narrow_year(Date.today.year)
+    open_year = params[:open_year].present? ? params[:open_year].to_i : Date.today.year
+    @soukais = Soukai.narrow_year(open_year)
   end
   
   def show
@@ -55,6 +57,10 @@ class SoukaisController < ApplicationController
       def soukai_params
         params.require(:soukai).permit(:name, :date, :password,
                                      :password_confirmation)
+      end
+      
+      def set_open_year
+        @open_year = (2016..Date.today.year).to_a.reverse
       end
   
 end

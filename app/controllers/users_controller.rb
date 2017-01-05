@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy]
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]
+  before_action :set_open_year, only: [:show]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 15).where(activated: true).order("entrance_year desc, id asc")
@@ -24,7 +25,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @soukais = Soukai.narrow_year(Date.today.year).order("date asc")
+    open_year = params[:open_year].present? ? params[:open_year].to_i : Date.today.year
+    @soukais = Soukai.narrow_year(open_year).order("date asc")
   end
   
   def new
@@ -71,5 +73,9 @@ class UsersController < ApplicationController
       
       def set_entrance_year
         @entrance_years = (Date.today.year-10..Date.today.year).to_a.reverse
+      end
+      
+      def set_open_year
+        @open_year = (2016..Date.today.year).to_a.reverse
       end
 end
