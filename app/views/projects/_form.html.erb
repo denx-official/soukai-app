@@ -12,37 +12,43 @@
     </div>
   <% end %>
   
-  <div class="col-md-6 col-md-offset-3">
-    <%= f.label :name, "企画名"%>
+  <div class="col-md-8 col-md-offset-2">
+    <%= f.label :name, "プロジェクト名"%>
     <%= f.text_field :name, class: 'form-control' %>
     
     <%= f.label :soukai_id, "決議総会"%>
     <%= f.collection_select :soukai_id, @soukais, :id, :name, {}, class: 'form-control' %>
     
     <%= f.hidden_field :user_id, value: current_user.id %>
+    
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+           <th>オプション名</th>
+           <th>価格</th>
+           <th>備考欄</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.nested_fields_for :project_option, wrapper_tag: :tr do |project_option| %>
+          <td><%= project_option.text_field    :name,     class: 'form-control' %></td>
+          <td><%= project_option.number_field   :price,     class: 'form-control' %></td>
+          <td><%= project_option.text_area  :remarks,     class: 'form-control' %></td>
+              <%= project_option.hidden_field :project_id, value: @project_id %>
+          <td><%= project_option.remove_nested_fields_link '削除', class: 'btn btn-danger', role: 'button' %></td>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div style="text-align: center;">
+      <%= f.add_nested_fields_link :project_option, 'オプションを追加', class: 'btn btn-primary', role: 'button' %>
+    </div>
+    
+    <div style="padding-top:20px"> </div>
+    
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
   </div>
   
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-         <th>オプション名</th>
-         <th>価格</th>
-         <th>備考欄</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= f.nested_fields_for :project_option, wrapper_tag: :tr do |project_option| %>
-        <td><%= project_option.text_field    :name,     class: 'form-control' %></td>
-        <td><%= project_option.number_field   :price,     class: 'form-control' %></td>
-        <td><%= project_option.text_area  :remarks,     class: 'form-control' %></td>
-            <%= project_option.hidden_field :project_id, value: @project_id %>
-        <td><%= project_option.remove_nested_fields_link '削除', class: 'btn btn-danger', role: 'button' %></td>
-      <% end %>
-    </tbody>
-  </table>
-  <%= f.add_nested_fields_link :project_option, 'オプションを追加', class: 'btn btn-primary', role: 'button' %>
-  <div style="padding-top:10px"> </div>
   
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
       
 <% end %>

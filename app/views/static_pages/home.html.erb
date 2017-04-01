@@ -8,10 +8,10 @@
   <div>
     <%= link_to "出席", attend_path, class: "btn btn-lg btn-primary" %>
     <%= link_to "投票", select_project_votes_path, class: "btn btn-lg btn-primary" %>
-    <%= link_to "企画", new_project_path, class: "btn btn-lg btn-primary" %>
     <% if current_user.admin? %>
       <%= link_to "総会", new_soukai_path, class: "btn btn-lg btn-primary" %>
     <% end %>
+    <%= link_to "プロジェクト", new_project_path, class: "btn btn-lg btn-primary" %>
   </div>
   
   <% else %>
