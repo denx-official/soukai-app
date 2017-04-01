@@ -1,10 +1,6 @@
 <h1>Soukai App</h1>
 
-<p>どうも こんにちは<%= @user.name %>さん</p>
+<p>こんにちは<%= @user.name %>さん</p>
+<p>下のリンクを踏んでアカウントをアクティベートしてください。</p>
 
-<p>
-下のリンクを踏んでアカウントをアクティベートしてください。
-</p>
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
