@@ -11,7 +11,7 @@ class SendMailsController < ApplicationController
       users = User.all
     end
     if users.present?
-      NoticeMailer.send_notice(users, params[:subject], params[:body])
+      NoticeMailer.send_notice(users, params[:subject], params[:body]).deliver_now
       flash[:info] = "送信しました"
       redirect_to root_url
     else
