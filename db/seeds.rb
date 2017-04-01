@@ -65,10 +65,3 @@ end
                user_id: user_id[i],
                project_option_id: (7..9).to_a.sample)
 end
-
-3.times do |i|
-  ShareThing.create(
-    name: "content#{i}",
-    content: "content#{i*100}",
-    content_type_id: 2)
-end
