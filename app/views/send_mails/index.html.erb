@@ -5,10 +5,11 @@
     
     <div style="text-align: center;">
       Toに半角スペース区切りで入力した年度のユーザーに送信されます。<br>
+      （「2015 2016」と入力すれば2015, 2016年度生に送信されます ）<br>
       なにも入力しなければ全ユーザーに送信されます。
     </div>
     
-    <%= form_tag users_url, method: "GET", style: "margin-top: 20px;" do %>
+    <%= form_tag send_mails_path, method: "POST", style: "margin-top: 20px;" do %>
       <div class="form-group">
         <%= label_tag :to, "To", class: "control-label" %>
         <%= text_field_tag :to, params[:to], class: "form-control" %>

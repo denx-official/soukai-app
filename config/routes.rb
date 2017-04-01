@@ -21,5 +21,5 @@ Rails.application.routes.draw do
       :project_options_select
     end
   end
-  resources :send_mails
+  resources :send_mails, only: [:index, :create]
 end
