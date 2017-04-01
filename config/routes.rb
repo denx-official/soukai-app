@@ -21,4 +21,5 @@ Rails.application.routes.draw do
       :project_options_select
     end
   end
+  resources :send_mails
 end
