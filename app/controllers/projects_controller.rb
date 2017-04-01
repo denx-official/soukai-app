@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   before_action :project_create_user?, only: [:edit, :update, :destroy]
   
   def index
-    @projects = Project.paginate(page: params[:page])
+    @projects = Project.paginate(page: params[:page]).order("id desc")
     soukais = Soukai.find(@projects.map(&:soukai_id))
     @soukai_name = {}
     soukais.each do |soukai|

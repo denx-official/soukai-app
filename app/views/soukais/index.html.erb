@@ -19,10 +19,24 @@
   <% end %>
   
   <table class="table">
-    <tr>
-      <th>名前</th><th>日付</th>
-    </tr>
-      <%= render @soukais %>
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>日付</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @soukais.each do |soukai| %>
+        <tr>
+          <th><%= link_to soukai.name, soukai %></th>
+          <th><%= soukai.date %></th>
+          <% if current_user.admin? %>
+            <th><%= link_to "編集", edit_soukai_path(soukai.id) %></th>
+            <th><%= link_to "削除", soukai, method: :delete, data: { confirm: "You sure?" }%></th>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   
   <% if current_user.admin? %>

@@ -4,15 +4,29 @@
 <div class="row col-md-8 col-md-offset-2">
   
   <table class="table">
-    <tr>
-      <th>名前</th>
-      <th>決議総会</th>
-      <th></th>
-      <th></th>
-    </tr>
-      <%= will_paginate %>
-        <%= render @projects %>
-      <%= will_paginate %>
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>決議総会</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project %></td>
+          <td><%= @soukai_name[project.soukai_id] %></td>
+          <% if current_user.admin? || project_create_user?(project) %>
+            <td><%= link_to "編集", edit_project_path(project.id) %></td>
+            <td><%= link_to "削除", project, method: :delete, data: { confirm: "You sure?" }%></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   
   <div class="center"><%= link_to "プロジェクト登録", 'projects/new', class: "btn btn-lg btn-primary" %></div>
