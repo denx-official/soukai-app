@@ -5,9 +5,6 @@
   
   <h1 class="center">
     <%= @user.name %>
-    <% if current_user.admin? && !current_user?(@user) %>
-      | <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
-    <% end %>
   </h1>
     
   <%= form_tag user_url(@user), method: "GET", class: "form-horizontal" do%>

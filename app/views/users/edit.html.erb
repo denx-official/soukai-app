@@ -1,7 +1,12 @@
 <% provide(:title, "ユーザー設定") %>
 <% provide(:button_text, "変更を保存") %>
 <h1>ユーザー設定</h1>
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= render 'form' %>
+    <div style="text-align: center; margin-top:20px;">
+      <%= link_to "アカウント削除", @user, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>
