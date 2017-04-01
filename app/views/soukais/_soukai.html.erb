@@ -3,7 +3,6 @@
   <th><%= soukai.date %></th>
 <% if current_user.admin? %>
   <th><%= link_to "編集", edit_soukai_path(soukai.id) %></th>
-  <th><%= link_to "削除", soukai, method: :delete,
-                        data: { confirm: "You sure?" }%></th>
+  <th><%= link_to "削除", soukai, method: :delete, data: { confirm: "You sure?" }%></th>
 <% end %>
 </tr>

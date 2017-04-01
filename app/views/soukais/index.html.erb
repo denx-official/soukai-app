@@ -1,28 +1,32 @@
-<% provide(:title, 'All soukais') %>
-<h1>All SOUKAI</h1>
+<% provide(:title, "総会一覧") %>
 
-<%= form_tag soukais_url, method: "GET", class: "form-horizontal " do%>
+<h1>総会一覧</h1>
+
+<div class="row col-md-8 col-md-offset-2">
   
-  <div class="form-group" >
-    <%= label_tag :open_year, "開催年", class: "control-label col-sm-2" %>
-    <div class="col-sm-4">
-      <%= select_tag :open_year, options_for_select(@open_year, selected: params[:open_year]), class: "form-control" %>
+  <%= form_tag soukais_url, method: "GET", class: "form-horizontal " do%>
+    
+    <div class="form-group" >
+      <%= label_tag :open_year, "開催年", class: "control-label col-sm-2" %>
+      <div class="col-sm-4">
+        <%= select_tag :open_year, options_for_select(@open_year, selected: params[:open_year]), class: "form-control" %>
+      </div>
     </div>
-  </div>
+  
+    <div class="col-md-2 col-md-offset-2" style="padding-bottom:50px;">
+      <%= submit_tag "検索", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  
+  <table class="table">
+    <tr>
+      <th>名前</th><th>日付</th>
+    </tr>
+      <%= render @soukais %>
+  </table>
+  
+  <% if current_user.admin? %>
+    <div class="center"><%= link_to "総会登録", 'soukais/new', class: "btn btn-lg btn-primary" %></div>
+  <% end %>
 
-  <div class="col-md-2 col-md-offset-2" style="padding-bottom:50px;">
-    <%= submit_tag "検索", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<table class="table">
-  <tr>
-    <th>名前</th><th>日付</th>
-  </tr>
-    <%= render @soukais %>
-</table>
-
-<% if current_user.admin? %>
-  <div class="center"><%= link_to "総会を登録", 'soukais/new', class: "btn btn-lg btn-primary" %></div>
-<% end %>
-
+</div>

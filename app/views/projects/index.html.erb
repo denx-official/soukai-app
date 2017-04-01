@@ -1,16 +1,20 @@
-<% provide(:title, 'All Projects') %>
-<h1>All PROJECTS</h1>
+<% provide(:title, "プロジェクト一覧") %>
+<h1>プロジェクト一覧</h1>
 
-<table class="table">
-  <tr>
-    <th>名前</th>
-    <th>決議総会</th>
-    <th></th>
-    <th></th>
-  </tr>
-    <%= will_paginate %>
-      <%= render @projects %>
-    <%= will_paginate %>
-</table>
-
-<div class="center"><%= link_to "プロジェクト登録", 'projects/new', class: "btn btn-lg btn-primary" %></div>
+<div class="row col-md-8 col-md-offset-2">
+  
+  <table class="table">
+    <tr>
+      <th>名前</th>
+      <th>決議総会</th>
+      <th></th>
+      <th></th>
+    </tr>
+      <%= will_paginate %>
+        <%= render @projects %>
+      <%= will_paginate %>
+  </table>
+  
+  <div class="center"><%= link_to "プロジェクト登録", 'projects/new', class: "btn btn-lg btn-primary" %></div>
+  
+</div>
