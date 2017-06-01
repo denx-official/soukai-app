@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105102859) do
+ActiveRecord::Schema.define(version: 20170601062944) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "soukai_id"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20170105102859) do
     t.datetime "updated_at",      null: false
     t.string   "name"
     t.integer  "content_type_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.integer  "season_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "project_options", force: :cascade do |t|
@@ -71,6 +79,15 @@ ActiveRecord::Schema.define(version: 20170105102859) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "user_remind_event_categories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_category_id"
+    t.boolean  "is_remind",         default: false
+    t.integer  "remind_before_day", default: 1
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "users", force: :cascade do |t|

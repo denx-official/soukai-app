@@ -17,6 +17,7 @@ gem 'rack-user_agent'
 gem 'nested_form_fields'
 gem 'cocoon'
 gem 'ehon'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

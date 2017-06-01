@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   resources :soukais
   resources :attendances,         only: [:new, :create]
   resources :projects
+  resources :events,       only: [:index]
   resources :votes,        only: [:new, :create] do
     collection do
       get :select_project
-      :project_options_select
+      get :project_options_select
     end
   end
   resources :send_mails, only: [:index, :create]

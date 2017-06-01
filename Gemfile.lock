@@ -50,6 +50,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    chronic (0.10.2)
     cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.1.0)
@@ -226,6 +227,8 @@ GEM
       binding_of_caller (= 0.7.3.pre1)
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
     will_paginate (3.0.7)
     woothee (1.5.0)
     yard (0.9.5)
@@ -264,6 +267,7 @@ DEPENDENCIES
   turbolinks (= 2.3.0)
   uglifier (= 2.5.3)
   web-console (= 2.0.0.beta3)
+  whenever
   will_paginate (= 3.0.7)
 
 BUNDLED WITH
