@@ -8,7 +8,7 @@
   <%= f.email_field :email, class: 'form-control' %>
   
   <%= f.label :entrance_year　,"入学年度" %>
-  <%= f.select :entrance_year, options_for_select(@entrance_years, include_blank: false), {}, class: 'form-control' %>
+  <%= f.select :entrance_year, options_for_select(@entrance_years, include_blank: false, selected: @user.entrance_year), {}, class: 'form-control' %>
   
   <%= f.label :password ,"パスワード (6文字以上)"%>
   <%= f.password_field :password, class: 'form-control' %>
@@ -16,7 +16,7 @@
   <%= f.label :password_confirmation, "パスワード (確認用)" %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
   
-  <%= label_tag "remind_event_category_ids[]", "リマインド設定" %><br>
+  <%= label_tag "remind_event_category_ids[]", "リマインド設定(DENXのイベントをメールでお知らせします)" %><br>
   <div class="btn-group" data-toggle="buttons" style="margin-bottom: 20px; text-align:center;">
     <% Event::Category.all.each do |category| %>
       <label class="btn btn-primary <%= "active" if @remind_event_category_ids.include?(category.id) %>">
