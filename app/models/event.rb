@@ -20,8 +20,8 @@ class Event < ActiveRecord::Base
         start_time = event[:starttime].to_time
         
         # remind_user_ids = user_remind_event_categories.select {|user_remind_event_category| user_remind_event_category.event_category_id == category_id }.map(&:user_id)
-        user = users.select{|u|u.name == "尾高"}
-        NoticeMailer.send_notice(user, event_name, start_time).deliver_now
+        user = users.select{|u|u.name == "尾高"}.first
+        NoticeMailer.event_notice(user, event_name, start_time).deliver_now
         # remind_user_ids.each do |remind_user_id|
         #   user = users.find {|u| u.id == remind_user_id }
         #   NoticeMailer.send_notice(user, subject, event_name, start_time).deliver_now

@@ -1,4 +1,5 @@
 class NoticeMailer < ApplicationMailer
+  
   def send_notice(user_mails, subject, body)
     @body = body
     mail bcc: user_mails, subject: subject
@@ -9,6 +10,7 @@ class NoticeMailer < ApplicationMailer
     @event_name = event_name
     @start_time = start_time
     
-    mail bcc: user.email, subject: "[DENX APP] #{event_name}のお知らせ"
+    mail to: user.email, subject: "[DENX APP] #{event_name}のお知らせ"
   end
+  
 end
