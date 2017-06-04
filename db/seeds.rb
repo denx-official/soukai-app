@@ -65,3 +65,9 @@ end
                user_id: user_id[i],
                project_option_id: (7..9).to_a.sample)
 end
+
+User.all.each do |user|
+  Event::Category.all.each do |ec|
+    User::RemindEventCategory.create(user_id: user.id, event_category_id: ec.id, is_remind: [true, false].sample)
+  end
+end
