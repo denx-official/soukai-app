@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]
   before_action :set_open_year, only: [:show]
+  before_action :set_remind_event_category_ids, only: [:new, :edit, :create, :update]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 15).where(activated: true).order("entrance_year desc, id asc")
@@ -49,6 +50,19 @@ class UsersController < ApplicationController
   end
   
   def update
+    if params[:remind_event_category_ids].present?
+      remind_event_category_ids = params[:remind_event_category_ids].map(&:to_i)
+      user_remind_event_category_ids = User::RemindEventCategory.where(user_id: params[:id], event_category_id: remind_event_category_ids)
+      remind_event_category_ids.each do |category_id|
+        if user_remind_event_category_id = user_remind_event_category_ids.find {|u_category_id| u_category_id == category_id }
+          user_remind_event_category_id.is_remind = true
+          user_remind_event_category_id.save
+        else
+          User::RemindEventCategory.create(user_id: params[:id], event_category_id: category_id, is_remind: true)
+        end
+      end
+    end
+    
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "変更されました"
@@ -67,8 +81,7 @@ class UsersController < ApplicationController
     private
     
       def user_params
-        params.require(:user).permit(:name, :email, :entrance_year,
-                                  :password, :password_confirmation)
+        params.require(:user).permit(:name, :email, :entrance_year, :password, :password_confirmation)
       end
       
       def set_entrance_year
@@ -78,4 +91,9 @@ class UsersController < ApplicationController
       def set_open_year
         @open_year = (2016..Date.today.year).to_a.reverse
       end
+      
+      def set_remind_event_category_ids
+        @remind_event_category_ids = User::RemindEventCategory.where(user_id: params[:id]).map(&:event_category_id)
+      end
+        
 end
