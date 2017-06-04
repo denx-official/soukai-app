@@ -11,22 +11,26 @@ class Event < ActiveRecord::Base
       events = json[:items].map(&:symbolize_keys)
       category_names = events.map {|event| event[:calendar] }.uniq
       category_ids = Event::Category.all.select {|c| category_names.include?(c.name) }.map(&:id)
-      user_remind_event_categories = User::RemindEventCategory.where(event_category_id: category_ids, is_remind: true).to_a
-      users = User.where(id: user_remind_event_categories.map(&:user_id).uniq).to_a
+      remind_event_categories = User::RemindEventCategory.where(event_category_id: category_ids, is_remind: true).to_a
+      users = User.where(id: remind_event_categories.map(&:user_id).uniq).to_a
 
       events.each do |event|
-        # category_id = Event::Category.find(event[:calendar]).id
         event_name = event[:summary]
+        category = Event::Category.find(event[:calendar])
         start_time = event[:starttime].to_time
+        reminds = remind_event_categories.select {|r| r.event_category_id == category.id}
         
-        # remind_user_ids = user_remind_event_categories.select {|user_remind_event_category| user_remind_event_category.event_category_id == category_id }.map(&:user_id)
-        user = users.select{|u|u.name == "尾高"}.first
-        NoticeMailer.event_notice(user, event_name, start_time).deliver_now
-        # remind_user_ids.each do |remind_user_id|
-        #   user = users.find {|u| u.id == remind_user_id }
-        #   NoticeMailer.send_notice(user, subject, event_name, start_time).deliver_now
-        # end
+        reminds.each do |remind|
+          if start_time - Time.current <= remind.remind_before_day.days
+            user = users.find {|u| u.id == remind.user_id }
+            NoticeMailer.event_notice(user, event_name, start_time).deliver_now if user.id == 1
+          end
+        end
+        
       end
+    else
+      admin_users_email = users.select {|u| u.admin? }.map(&:email)
+      NoticeMailer.send_notice(admin_users_email, "DENX APPに異常発生", "#{EVENT_API_URL}からくるjsonに異常あり")
     end
     nil
   end
