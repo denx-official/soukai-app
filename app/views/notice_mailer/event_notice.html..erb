@@ -1,0 +1,10 @@
+<p>「<%= @event_name %>」のお知らせです。</p>
+<br>
+<p><%= @start_time.strftime("%Y年%m月%d日") %>は<%= @event_name %>があります。</p>
+<p>開始時間は<%= @start_time.strftime("%H時") %>です。</p>
+
+
+<hr style="margin-top: 100px;">
+
+<p>本メールは<% link_to "DEXN APP", root_url %>から送信されています。</p>
+<p><% link_to "アカウント設定", edit_user_url(@user) %>から配信を停止することもできます。</p>
