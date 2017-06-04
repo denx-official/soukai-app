@@ -13,8 +13,9 @@
 #   rake "some:great:rake:task"
 # end
 #
-every 1.days do
-  runner "AnotherModel.prune_old_records"
+
+every 1.days, at: "7pm" do
+  runner "Event.check_events"
 end
 
 # Learn more: http://github.com/javan/whenever

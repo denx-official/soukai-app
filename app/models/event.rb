@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
         reminds.each do |remind|
           if start_time - Time.current <= remind.remind_before_day.days
             user = users.find {|u| u.id == remind.user_id }
-            NoticeMailer.event_notice(user, event_name, start_time).deliver_now if user.id == 1
+            NoticeMailer.event_notice(user, event_name, start_time).deliver_now
           end
         end
         
