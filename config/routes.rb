@@ -23,4 +23,5 @@ Rails.application.routes.draw do
     end
   end
   resources :send_mails, only: [:index, :create]
+  resources :remind_mails, only: [:edit, :update]
 end

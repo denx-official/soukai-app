@@ -1,0 +1,40 @@
+<script>
+  <% @event_categories.each do |category| %>
+    $(function() {
+      $('#<%= category.id %>').bootstrapToggle();
+    })
+  <% end %>
+</script>
+
+<h1>リマインド設定</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3" style="margin-top: 50px;s">
+    <%= form_tag remind_mail_path(@user), method: :put, class: "form-horizontal" do %>
+      <% @event_categories.each do |category| %>
+        <div class="row">
+          <div class="col-md-3">
+            <%= label_tag category.name.to_sym, category.name %>
+          </div>
+          <div class="col-md-3">
+            <% if @remind_event_category_map[category.id].try(:is_remind) %>
+              <%= check_box_tag category.name, true, false, { id: category.id, "data-toggle" => "toggle", checked: true } %>
+            <% else %>
+              <%= check_box_tag category.name, true, false, { id: category.id, "data-toggle" => "toggle" } %>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <%= number_field_tag "#{category.name}_remind_before_day", @remind_event_category_map[category.id].try(:remind_before_day) || 1, class: "form-control" %>
+          </div>
+          <div class="col-md-3" style="vertical-align: middle;">
+            日前に通知
+          </div>
+        </div>
+      <% end %>
+        
+      <div class="col-md-3 col-md-offset-4">
+        <%= submit_tag "登録", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
