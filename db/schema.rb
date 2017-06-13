@@ -14,106 +14,78 @@
 ActiveRecord::Schema.define(version: 20170601062944) do
 
   create_table "attendances", force: :cascade do |t|
-    t.integer  "soukai_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "common_thing_content_types", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "common_things", force: :cascade do |t|
-    t.text     "content"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "name"
-    t.integer  "content_type_id"
+    t.integer  "soukai_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.integer  "season_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",        limit: 255
+    t.integer  "category_id", limit: 4
+    t.integer  "season_id",   limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "project_options", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.integer  "project_id"
-    t.text     "remarks"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.integer  "price",      limit: 4
+    t.integer  "project_id", limit: 4
+    t.text     "remarks",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "soukai_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-  end
-
-  create_table "share_thing_content_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "share_things", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "content_type_id"
-    t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",       limit: 255
+    t.integer  "soukai_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
 
   create_table "soukais", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",            limit: 255
     t.date     "date"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "user_remind_event_categories", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_category_id"
-    t.boolean  "is_remind",         default: false
-    t.integer  "remind_before_day", default: 1
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.integer  "user_id",           limit: 4
+    t.integer  "event_category_id", limit: 4
+    t.boolean  "is_remind",         limit: 1, default: false
+    t.integer  "remind_before_day", limit: 4, default: 1
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "password_digest"
-    t.string   "remember_digest"
-    t.boolean  "admin"
-    t.string   "activation_digest"
-    t.boolean  "activated"
+    t.string   "name",              limit: 255
+    t.string   "email",             limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "password_digest",   limit: 255
+    t.string   "remember_digest",   limit: 255
+    t.boolean  "admin",             limit: 1
+    t.string   "activation_digest", limit: 255
+    t.boolean  "activated",         limit: 1
     t.datetime "activated_at"
-    t.string   "reset_digest"
+    t.string   "reset_digest",      limit: 255
     t.datetime "reset_sent_at"
-    t.integer  "entrance_year"
+    t.integer  "entrance_year",     limit: 4
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "project_option_id"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "project_id",        limit: 4
+    t.integer  "project_option_id", limit: 4
+    t.integer  "user_id",           limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
