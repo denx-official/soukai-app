@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page], per_page: 15).where(activated: true).order("entrance_year desc, id asc")
     @year = (2006..Date.today.year).to_a.reverse
-    @soukais = Soukai.narrow_year(Date.today.year).order("date asc")
+    soukai_year = params[:soukai_year].present? ? params[:soukai_year].to_i : Date.today.year
+    @soukais = Soukai.narrow_year(soukai_year).order("date asc")
     
     if params[:name].present?
       @users = @users.where(['name LIKE ?', "%#{params[:name]}%"])
