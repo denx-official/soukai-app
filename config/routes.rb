@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get    'attend'  => 'attendances#new'
 
-  resources :users
+  resources :users do
+    member do
+      put :change_admin
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :soukais

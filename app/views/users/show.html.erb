@@ -5,6 +5,14 @@
   
   <h1 class="center">
     <%= @user.name %>
+    <% if current_user.admin? %>
+      <% if @user.admin? %>
+        (admin)
+        <%= link_to "管理者から外す", change_admin_user_path(@user, admin: false), method: :put, class: "btn btn-danger" unless @user == current_user %>
+      <% else %>
+        <%= link_to "管理者に設定", change_admin_user_path(@user, admin: true), method: :put, class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
   </h1>
     
   <%= form_tag user_url(@user), method: "GET", class: "form-horizontal" do%>

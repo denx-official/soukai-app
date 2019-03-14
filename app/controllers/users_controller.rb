@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Common
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy]
+  before_action :admin_user,     only: [:destroy, :to_admin]
   before_action :set_entrance_year, only: [:new, :edit, :create, :update]
   before_action :set_open_year, only: [:show]
   
@@ -63,6 +63,16 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
+  end
+  
+  def change_admin
+    @user = User.find(params[:id])
+    if @user.update(admin: params[:admin])
+      flash[:success] = "変更されました"
+    else
+      flash[:danger] = "失敗"
+    end
+      redirect_to @user
   end
   
     private
