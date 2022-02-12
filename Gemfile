@@ -4,8 +4,9 @@ gem 'rails',                '4.2.2'
 gem 'bcrypt',               '3.1.7'
 gem 'faker',                '1.4.2'
 gem 'will_paginate',           '3.0.7'
+gem 'json',                 '1.8.3'
 gem 'bootstrap-will_paginate', '0.0.10'
-gem 'bootstrap-sass',       '3.2.0.0'
+gem 'bootstrap-sass',       '3.4.1.0'
 gem 'sass-rails',           '5.0.6'
 gem 'uglifier',             '2.5.3'
 gem 'coffee-rails',         '4.1.0'
@@ -18,6 +19,8 @@ gem 'nested_form_fields'
 gem 'cocoon'
 gem 'ehon'
 gem 'whenever', :require => false
+
+gem 'therubyracer', platforms: :ruby
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
