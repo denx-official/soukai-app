@@ -1,4 +1,6 @@
-FROM ruby:2.2
+# Development environment
+
+FROM ruby:2.2 as development
 
 RUN apt-get update -qq && apt-get install -y sqlite3
 WORKDIR /myapp
@@ -11,6 +13,15 @@ COPY . /myapp
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["bin/rake", "db:migrate", "RAILS_ENV=development"]
+
+# Production environment
+
+FROM development as production
+
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["RAILS_ENV=production", "bundle", "exec", "rake", "assets:precompile"]
+CMD ["RAILS_ENV=production", "bundle", "exec", "rake", "db:migrate"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]

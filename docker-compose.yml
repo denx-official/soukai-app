@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: "development"
+    image: soukai-app-dev
+    container_name: soukai-app-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - db-cache:/myapp/db
+    command: /bin/sh -c "rails server -b 0.0.0.0"
+
+volumes:
+  db-cache:
