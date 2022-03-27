@@ -7,8 +7,8 @@ Ruby on Rails チュートリアル(http://railstutorial.jp/) を改造して作
 ### 開発環境
 
 ```sh
-sudo docker-compose up -d
+docker-compose up -d
 
 # seeder (初回のみ)
-sudo docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:seed"
+docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:seed"
 ```

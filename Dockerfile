@@ -1,8 +1,8 @@
 # Development environment
 
-FROM ruby:2.2 as development
+FROM ruby:2.2-slim as development
 
-RUN apt-get update -qq && apt-get install -y sqlite3
+RUN apt-get update -qq && apt-get install -y sqlite3 libsqlite3-dev make gcc g++
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
@@ -24,4 +24,3 @@ FROM development as production
 
 CMD ["RAILS_ENV=production", "bundle", "exec", "rake", "assets:precompile"]
 CMD ["RAILS_ENV=production", "bundle", "exec", "rake", "db:migrate"]
-CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
