@@ -18,6 +18,7 @@ gem 'rack-user_agent'
 gem 'nested_form_fields'
 gem 'cocoon'
 gem 'ehon'
+gem 'dotenv-rails'
 gem 'whenever', :require => false
 
 gem 'therubyracer', platforms: :ruby
