@@ -36,9 +36,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = "確認メールを送信しました。"
+    if !is_valid_invitation_code
+      flash[:danger] = "招待コードが違います"
+      render 'new'
+    elsif @user.save
+      @user.activate
+      log_in @user
+      flash[:info] = "アカウントを作成しました。"
       redirect_to root_url
     else
       render 'new'
@@ -79,6 +83,11 @@ class UsersController < ApplicationController
     
       def user_params
         params.require(:user).permit(:name, :email, :entrance_year, :password, :password_confirmation)
+      end
+
+      def is_valid_invitation_code
+        code = params.require(:user).permit(:invitation_code)['invitation_code']
+        BCrypt::Password::new(ENV["INVITATION_CODE"]) == code
       end
       
       def set_entrance_year
