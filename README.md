@@ -12,6 +12,6 @@ docker-compose up -d
 # migrate
 docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:migrate RAILS_ENV=development"
 
-# seeder (初回のみ)
+# seeder
 docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:seed"
 ```
