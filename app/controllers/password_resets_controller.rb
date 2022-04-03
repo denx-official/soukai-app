@@ -9,16 +9,18 @@ class PasswordResetsController < ApplicationController
   end
   
   def create
-    @user = User.find_by(email: params[:password_reset][:email].downcase)
-    if @user
-      @user.create_reset_digest
-      @user.send_password_reset_email
-      flash[:info] = "パスワードリセット用のメールを送信しました"
-      redirect_to root_url
-    else
-      flash.now[:danger] = "メールアドレスが見つかりません(登録されてません)"
-      render 'new'
-    end
+    # @user = User.find_by(email: params[:password_reset][:email].downcase)
+    # if @user
+    #   @user.create_reset_digest
+    #   @user.send_password_reset_email
+    #   flash[:info] = "パスワードリセット用のメールを送信しました"
+    #   redirect_to root_url
+    # else
+    #   flash.now[:danger] = "メールアドレスが見つかりません(登録されてません)"
+    #   render 'new'
+    # end
+    flash[:info] = "パスワードリセット機能は現在利用できません"
+    redirect_to root_url
   end
 
   def edit
