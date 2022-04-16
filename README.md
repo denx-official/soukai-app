@@ -15,3 +15,13 @@ docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:migrate RAILS_ENV=devel
 # seeder
 docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:seed"
 ```
+
+### デプロイ
+
+```sh
+heroku login
+
+heroku container:login
+heroku container:push --app denx-soukai-app web
+heroku container:release web
+```
