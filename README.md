@@ -10,10 +10,10 @@ Ruby on Rails チュートリアル(http://railstutorial.jp/) を改造して作
 docker-compose up -d
 
 # migrate
-docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:migrate RAILS_ENV=development"
+docker exec -it soukai-app /bin/bash -c "bin/rake db:migrate"
 
 # seeder
-docker exec -it soukai-app-dev /bin/bash -c "bin/rake db:seed"
+docker exec -it soukai-app /bin/bash -c "bin/rake db:seed"
 ```
 
 ### デプロイ
