@@ -1,6 +1,6 @@
 FROM ruby:2.2-slim
 
-RUN apt-get update -qq && apt-get install -y libpq-dev postgresql-client make gcc g++
+RUN apt-get update -qq && apt-get install -y mysql-client libmysqlclient-dev make gcc g++
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
