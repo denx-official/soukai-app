@@ -21,13 +21,13 @@ docker exec -it soukai-rails /bin/bash -c "bin/rake db:seed"
 
 ### デプロイ
 
-```sh
+<!-- ```sh
 heroku login
 
 heroku container:login
 heroku container:push --app denx-soukai-app web
 heroku container:release web
-```
+``` -->
 
 ## 参考
 
